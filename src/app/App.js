@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Button } from 'react-native';
 import RootNavigation from 'src/app/RootNavigation'
 
-import styles from './src/global/styles'
+import styles from 'src/global/styles'
 
 export default class App extends React.Component {
   render() {
