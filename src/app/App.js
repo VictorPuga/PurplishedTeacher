@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import Onboarding from './src/components/Onboarding'
+import { View, Button } from 'react-native';
+import RootNavigation from 'src/app/RootNavigation'
 
 import styles from './src/global/styles'
 
@@ -8,7 +8,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.app}>
-        <Onboarding />
+        {/*<RootNavigation />*/}
+          <Button title="Hey" />
       </View>
     );
   }
