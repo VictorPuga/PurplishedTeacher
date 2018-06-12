@@ -8,8 +8,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.app}>
-        {/*<RootNavigation />*/}
-          <Button title="Hey" />
+        <RootNavigation />
+          
       </View>
     );
   }
