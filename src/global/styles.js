@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 // Colors
 const myPurple =  '#722ED1'
 
+// Global styles
 const styles = StyleSheet.create({
     app: {
         flex: 1
@@ -12,7 +13,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'red'
     },
     title: {
         fontSize: 50,

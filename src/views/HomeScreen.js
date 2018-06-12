@@ -1,27 +1,20 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
+import ViewWithTitle from 'scr/global/UI/ViewWithTitle/ViewWithTitle'
 
 import styles from 'src/global/styles'
 
 class HomeScreen extends React.Component {
     render() {
         return(
-            <View style={styles.container}>
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-                hey*2
-            </View>
+                <ViewWithTitle title="hey">
+                    <View style={{backgroundColor: 'red', flex: 1}}>
+                    <Text>hey</Text>
+                    <Text>hey</Text>
+                    <Text>hey</Text>
+                    </View>
+                    
+                </ViewWithTitle>
         )
     }
 }
