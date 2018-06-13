@@ -1,28 +1,27 @@
 import React from 'react'
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import * as Views from 'src/views/_index';
 
-const { OnboardingScreen, ChatsScreen, GroupsScreen, CameraScreen, AccountScreen } = Views
-
-// Navigation for the Tab navigator component
-
-const TabNavigation = createBottomTabNavigator({
-    Groups: GroupsScreen,
-    Camera: CameraScreen,
-    Chats: ChatsScreen,
-    Account: AccountScreen,
-})
-
-
+const { OnboardingScreen, TabNavigation } = Views
 
 // Root navigation for the application
+
 const RootNavigation = createStackNavigator({
     Onboarding: { screen: OnboardingScreen },
     Tabs: { screen: TabNavigation }
 },
 {
+    // Instead of loading the onboarding, load the Tabs screen first.
+    // Then, check if the user is authenticated, and after that
+    // load the onboarding if they aren't. 
     initialRouteName: 'Onboarding',
+    headerMode: 'none',
+    navigationOptions: {
+        gesturesEnabled: false,
+      },
 })
 
 export default RootNavigation
+
+
 

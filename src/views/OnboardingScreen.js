@@ -33,7 +33,7 @@ export default class Onboarding extends React.Component {
                             returnKeyType={ "done" }
                             selectionColor="purple"
                             secureTextEntry/>
-                        <Button title="Continue" onPress={()=>this.props.navigation.navigate('Tabs')} />
+                        <Button title=" Continue " onPress={()=>this.props.navigation.navigate('Tabs')} />
                     </KeyboardAvoidingView>
                 </Pages>
           </View>

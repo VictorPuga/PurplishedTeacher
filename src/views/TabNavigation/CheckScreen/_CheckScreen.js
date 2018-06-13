@@ -4,12 +4,15 @@ import { Aux } from 'src/global/hoc'
 
 import styles from 'src/global/styles'
 
+// This component may not have navigation
+
 class CameraScreen extends React.Component {
     render() {
         return(
-                <View style={styles.container}>
-                    <Text>Camera screen</Text>
-                </View>
+            <View style={styles.container}>
+                <Text>Check screen</Text>
+                <Text>(Camera)</Text>
+            </View>
         )
     }
 }

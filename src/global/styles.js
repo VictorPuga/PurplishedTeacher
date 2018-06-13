@@ -7,6 +7,7 @@ const myPurple =  '#722ED1'
 const styles = StyleSheet.create({
     app: {
         flex: 1,
+        backgroundColor: '#fff',
     },
     container: {
       flex: 1,
