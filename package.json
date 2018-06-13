@@ -23,7 +23,6 @@
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-native-pages": "^0.7.0",
-    "react-native-view-with-title": "^1.0.1",
     "react-navigation": "^2.2.5"
   }
 }

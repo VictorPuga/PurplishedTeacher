@@ -1,2 +1,5 @@
-export {default as HomeScreen} from './HomeScreen'
+export {default as ChatsScreen} from './ChatsScreen'
 export {default as OnboardingScreen} from './OnboardingScreen'
+export {default as GroupsScreen} from './GroupsScreen'
+export {default as CameraScreen} from './CameraScreen'
+export {default as AccountScreen} from './AccountScreen'

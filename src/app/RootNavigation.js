@@ -1,16 +1,28 @@
-import { createStackNavigator } from 'react-navigation';
+import React from 'react'
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import * as Views from 'src/views/_index';
 
-const { HomeScreen, OnboardingScreen } = Views
+const { OnboardingScreen, ChatsScreen, GroupsScreen, CameraScreen, AccountScreen } = Views
 
-const RootNavigation = createStackNavigator(
-{
+// Navigation for the Tab navigator component
+
+const TabNavigation = createBottomTabNavigator({
+    Groups: GroupsScreen,
+    Camera: CameraScreen,
+    Chats: ChatsScreen,
+    Account: AccountScreen,
+})
+
+
+
+// Root navigation for the application
+const RootNavigation = createStackNavigator({
     Onboarding: { screen: OnboardingScreen },
-    Home: { screen: HomeScreen }
+    Tabs: { screen: TabNavigation }
 },
 {
-    initialRouteName: 'Home',
-}
-)
+    initialRouteName: 'Onboarding',
+})
 
 export default RootNavigation
+

@@ -4,9 +4,6 @@ import { Pages } from 'react-native-pages';
 import styles from '../global/styles';
 
 export default class Onboarding extends React.Component {
-    continueHandler = () => {
-        this.props.navigation.navigate('Home')
-    }
     render() {
       return (
           <View style={styles.app}>
@@ -36,7 +33,7 @@ export default class Onboarding extends React.Component {
                             returnKeyType={ "done" }
                             selectionColor="purple"
                             secureTextEntry/>
-                        <Button title="Continue" onPress={this.continueHandler} />
+                        <Button title="Continue" onPress={()=>this.props.navigation.navigate('Tabs')} />
                     </KeyboardAvoidingView>
                 </Pages>
           </View>
