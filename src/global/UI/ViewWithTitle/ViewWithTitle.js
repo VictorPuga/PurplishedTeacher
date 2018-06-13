@@ -25,7 +25,8 @@ class ViewWithTitle extends Component {
         title: string,
         children: any,
         data: Array<Object>,
-        renderItem: () => mixed
+        renderItem: () => mixed,
+        color: string
     };
 
     state: {
@@ -35,6 +36,7 @@ class ViewWithTitle extends Component {
     };
 
     headerHeight: number = statusBarHeight + headerHeight;
+    color: string = this.props.color;
 
     renderTitle = () => {
         if (this.props.title) {
@@ -50,7 +52,7 @@ class ViewWithTitle extends Component {
                 });
                 let borderBottomColor = this.state.scrollY.interpolate({
                     inputRange: [56, 57],
-                    outputRange: ["#ffffff", '#f2f2f2'],
+                    outputRange: ["#6328B6", '#6328B6'],
                     extrapolate: 'clamp'
                 });
                 return (
@@ -115,15 +117,15 @@ class ViewWithTitle extends Component {
             let padding = (Platform.OS === 'ios' && this.props.title) ? 56 : 0;
             return (
                 <ScrollView
-                    showsVerticalScrollIndicator={false}
+                    showsVerticalScrollIndicator={true}
                     scrollEventThrottle={16}
-                    style={{paddingTop: padding}}
+                    style={{paddingTop: padding, height: '100%'}}
                     onScroll={
                         Animated.event(
                             [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
                         )}
                 >
-                    <View style={[styles.contentContainer, {paddingBottom: padding}]}>
+                    <View style={[styles.contentContainer, {paddingBottom: 0}]}>
                         {
                             this.props.children
                         }
@@ -185,23 +187,26 @@ class ViewWithTitle extends Component {
 }
 
 const styles: StyleSheet = StyleSheet.create({
+    //this is the one
     outerContainer: {
-        width: 100 * vw,
-        backgroundColor: '#ffffff',
+        width: '100%',
+        backgroundColor: '#722ed1',
+        zIndex: -0,
+        height: 50*vh,
     },
     titleContainer: {
-        width: 100 * vw,
-        backgroundColor: '#ffffff',
+        width: '100%',
+        backgroundColor: '#722ed1',
     },
     iOSTitleContainer: {
-        width: 100 * vw,
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'flex-end',
         borderBottomWidth: 1,
-        borderBottomColor: '#f2f2f2',
+        borderBottomColor: '#6328B6',
     },
     iOSTitleContainerInvisible: {
-        width: 100 * vw,
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
@@ -210,18 +215,18 @@ const styles: StyleSheet = StyleSheet.create({
         fontSize: 17,
         lineHeight: 17,
         fontWeight: 'bold',
-        color: '#353535',
+        color: 'white',
         backgroundColor: 'rgba(0,0,0,0)'
     },
     androidTitleContainer: {
-        width: 100 * vw,
+        width: '100%',
         alignItems: 'flex-start',
         justifyContent: 'flex-end',
         borderBottomWidth: 1,
-        borderBottomColor: '#f2f2f2',
+        borderBottomColor: '#6328B6',
     },
     androidTitleContainerInvisible: {
-        width: 100 * vw,
+        width: '100%',
         alignItems: 'flex-start',
         justifyContent: 'flex-end',
     },
@@ -239,18 +244,18 @@ const styles: StyleSheet = StyleSheet.create({
         fontSize: 16,
         lineHeight: 20,
         fontWeight: 'bold',
-        color: '#353535',
+        color: 'white',
         backgroundColor: 'rgba(0,0,0,0)'
     },
     iOSBigTitleContainer: {
         position: 'absolute',
         top: headerHeight + statusBarHeight,
         left: 0,
-        width: 100 * vw,
+        width: '100%',
         height: 56,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#722ed1',
         borderBottomWidth: 1,
-        borderBottomColor: '#f2f2f2'
+        borderBottomColor: '#6328B6'
     },
     iOSBigTitle: {
         marginTop: 8,
@@ -259,15 +264,16 @@ const styles: StyleSheet = StyleSheet.create({
         fontSize: 34,
         lineHeight: 40,
         fontWeight: 'bold',
-        color: '#353535',
+        color: 'white',
         backgroundColor: 'rgba(0,0,0,0)',
     },
     innerContainer: {
         position: 'relative',
-        width: 100 * vw,
+        width: '100%',
     },
     contentContainer: {
-        width: 100 * vw,
+        height: vh * 100,
+        width: '100%',
         backgroundColor: '#fff',
     }
 });

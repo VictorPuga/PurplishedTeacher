@@ -6,7 +6,7 @@ const myPurple =  '#722ED1'
 // Global styles
 const styles = StyleSheet.create({
     app: {
-        flex: 1
+        flex: 1,
     },
     container: {
       flex: 1,

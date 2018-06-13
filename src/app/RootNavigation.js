@@ -5,12 +5,8 @@ const { HomeScreen, OnboardingScreen } = Views
 
 const RootNavigation = createStackNavigator(
 {
-    Home: {
-        screen: HomeScreen
-    },
-    Onboarding: {
-        screen: OnboardingScreen
-    }
+    Onboarding: { screen: OnboardingScreen },
+    Home: { screen: HomeScreen }
 },
 {
     initialRouteName: 'Home',
