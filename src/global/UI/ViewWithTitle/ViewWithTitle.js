@@ -191,7 +191,7 @@ const styles: StyleSheet = StyleSheet.create({
     outerContainer: {
         width: '100%',
         backgroundColor: '#722ed1',
-        zIndex: -0,
+        zIndex: 0,
         height: 50*vh,
     },
     titleContainer: {
