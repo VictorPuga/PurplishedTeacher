@@ -28,7 +28,7 @@ let Icons = {
     Zocial,
 }
 
-export default class IconComponent extends React.Component {
+export default class extends React.Component {
     render(){
         let {is, from, ...rest} = this.props
         const icon = Icons[from][is] 
