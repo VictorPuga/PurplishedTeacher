@@ -10,14 +10,18 @@ const AccountNavigation = createStackNavigator({
         screen: List,
         navigationOptions: ({ navigation }) => ({
             title: 'Chats',
-            headerRight: <Button title="New" onPress={()=>console.log()}/>,
-            headerLeft: <Button title="Edit" onPress={()=>console.log()}/>,
+            headerStyle: styles.header,
+            headerTintColor: 'whitesmoke',
+            headerTitleStyle: styles.headerTitle
           }),
     },
     Conversation: { 
         screen: Conversation,
         navigationOptions: ({ navigation }) => ({
             title: 'Chat with [someone]',
+            headerStyle: styles.header,
+            headerTintColor: 'whitesmoke',
+            headerTitleStyle: styles.headerTitle
           }),
     },
 },
@@ -26,3 +30,12 @@ const AccountNavigation = createStackNavigator({
 })
 
 export default AccountNavigation
+
+const styles = {
+    header: {
+        backgroundColor: '#722ED1',
+    },
+    headerTitle: {
+        color: 'white'
+    }
+}

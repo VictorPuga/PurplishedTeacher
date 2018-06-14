@@ -9,7 +9,6 @@ const AccountNavigation = createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             title: 'Account',
             headerStyle: styles.header,
-            headerBackTitle: 'hey',
             headerTintColor: 'whitesmoke',
             headerTitleStyle: styles.headerTitle
           }),

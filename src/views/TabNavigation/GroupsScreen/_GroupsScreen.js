@@ -4,14 +4,7 @@ import Groups from './Groups'
 import Students from './Students'
 import Grades from './Grades'
 
-const styles = {
-    header: {
-        backgroundColor: '#722ED1',
-    },
-    headerTitle: {
-        color: 'white'
-    }
-}
+
 
 const GroupNavigation = createStackNavigator({
     Groups: { 
@@ -26,11 +19,17 @@ const GroupNavigation = createStackNavigator({
         screen: Students,
         navigationOptions: ({ navigation }) => ({
             title: '[group name]',
+            headerStyle: styles.header,
+            headerTintColor: 'whitesmoke',
+            headerTitleStyle: styles.headerTitle
           }), },
     Grades: { 
         screen: Grades,
         navigationOptions: ({ navigation }) => ({
             title: '[student name]',
+            headerStyle: styles.header,
+            headerTintColor: 'whitesmoke',
+            headerTitleStyle: styles.headerTitle
           }),
     }
 },
@@ -41,3 +40,12 @@ const GroupNavigation = createStackNavigator({
 })
 
 export default GroupNavigation
+
+const styles = {
+    header: {
+        backgroundColor: '#722ED1',
+    },
+    headerTitle: {
+        color: 'white'
+    }
+}
