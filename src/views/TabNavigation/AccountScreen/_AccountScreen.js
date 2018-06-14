@@ -4,8 +4,18 @@ import Main from './Main'
 import Detail from './Detail'
 
 const AccountNavigation = createStackNavigator({
-    Main: { screen: Main },
-    Detail: { screen: Detail },
+    Main: { 
+        screen: Main,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Account',
+          }),
+    },
+    Detail: { 
+        screen: Detail,
+        navigationOptions: ({ navigation }) => ({
+            title: '[some setting]',
+          }),
+    },
 },
 {
     initialRouteName: 'Main',

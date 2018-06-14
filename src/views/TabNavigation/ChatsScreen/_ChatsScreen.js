@@ -4,8 +4,18 @@ import List from './List'
 import Conversation from './Conversation'
 
 const AccountNavigation = createStackNavigator({
-    List: { screen: List },
-    Conversation: { screen: Conversation },
+    List: { 
+        screen: List,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Chats',
+          }),
+    },
+    Conversation: { 
+        screen: Conversation,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Chat with [someone]',
+          }),
+    },
 },
 {
     initialRouteName: 'List',

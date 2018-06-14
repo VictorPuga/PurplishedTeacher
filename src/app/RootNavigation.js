@@ -14,7 +14,7 @@ const RootNavigation = createStackNavigator({
     // Instead of loading the onboarding, load the Tabs screen first.
     // Then, check if the user is authenticated, and after that
     // load the onboarding if they aren't. 
-    initialRouteName: 'Onboarding',
+    initialRouteName: 'Tabs',
     headerMode: 'none',
     navigationOptions: {
         gesturesEnabled: false,

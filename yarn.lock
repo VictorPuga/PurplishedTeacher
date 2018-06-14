@@ -5648,6 +5648,12 @@ react-native-tab-view@^1.0.0:
   dependencies:
     prop-types "^15.6.1"
 
+react-native-tableview@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-tableview/-/react-native-tableview-2.2.0.tgz#fc2138585d86da07e32ddca2b2399c59e6f7eb10"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-native-vector-icons@4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.5.0.tgz#6b95619e64f62f05f579f74a01fe5640df95158b"

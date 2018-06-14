@@ -272,7 +272,6 @@ const styles: StyleSheet = StyleSheet.create({
         width: '100%',
     },
     contentContainer: {
-        height: vh * 100,
         width: '100%',
         backgroundColor: '#fff',
     }

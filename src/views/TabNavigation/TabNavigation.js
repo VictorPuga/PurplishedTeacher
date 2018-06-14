@@ -12,7 +12,9 @@ const TabNavigation = createBottomTabNavigator({
     Check: CheckScreen,
     Chats: ChatsScreen,
     Account: AccountScreen,
-},{
+},
+{
+    initialRouteName: 'Groups',
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
@@ -29,9 +31,13 @@ const TabNavigation = createBottomTabNavigator({
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
         return <Ionicons name={iconName} size={25} color={tintColor} />;
-      },
-    })
+      }, 
+    tabBarOptions: {
+      activeTintColor: '#722ED1',
+      inactiveTintColor: 'gray',
+    },
   })
+})
 
 
   export default TabNavigation
