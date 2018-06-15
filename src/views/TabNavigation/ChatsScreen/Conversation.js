@@ -4,9 +4,13 @@ import styles from 'src/global/styles'
 
 class Conversation extends React.Component {
     render() {
+        const { navigation } = this.props
+        const name = navigation.getParam('person', 'Name')
+        
         return(
             <View style={styles.container}>
-                <Text>This is a conversation</Text>
+                <Text>(Chat)</Text>
+                <Text>{name}</Text>
             </View>
         )
     }

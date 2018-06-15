@@ -1,31 +1,16 @@
 import React from 'react';
-import { View, Text, Button, FlatList, TouchableHighlight, StyleSheet, Image, SafeAreaView, ActivityIndicator} from 'react-native';
+import { View, Text, Button, FlatList, TouchableHighlight, StyleSheet, Image, SafeAreaView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {Aux} from 'src/global/hoc'
 
 import globalStyles from 'src/global/styles'
 
-class List extends React.Component {
+class StudentList extends React.Component {
     state = {
-        chats: [
-            { id: '0', with: 'person', lastText: 'hey',image: 'not found'},
-            { id: '1', with: 'yourself', lastText: 'hello',image: 'not found'},
-            { id: '2', with: 'nobody', lastText: '* silence *',image: 'not found'},
-            { id: '3', with: 'alien', lastText: 'VEvafruE3',image: 'not found'},
-            { id: '4', with: 'test', lastText: 'dsfxghcbd ukckusyc bysdck skcsdyc scubscbskngynskucgukct',image: 'not found'},
-            { id: '5', with: 'alien', lastText: 'VEvafruE3',image: 'not found'},
-            { id: '6', with: 'error', lastText: 'error',image: 'error'},
-            { id: '7', with: 'error', lastText: 'error',image: 'error'},
-            { id: '8', with: 'error', lastText: 'error',image: 'error'},
-            { id: '9', with: 'error', lastText: 'error',image: 'error'},
-            { id: '10', with: 'error', lastText: 'error',image: 'error'},
-            { id: '11', with: 'error', lastText: 'error',image: 'error'},
-            { id: '12', with: 'error', lastText: 'error',image: 'error'},
-            { id: '13', with: 'error', lastText: 'error',image: 'error'},
-            { id: '14', with: 'error', lastText: 'error',image: 'error'},
-            { id: '15', with: 'error', lastText: 'error',image: 'error'},
-            { id: '16', with: 'error', lastText: 'error',image: 'error'},
+        students: [
+            { id: '0', name: 'person', average: '91', image: 'not found'},
+            { id: '1', name: 'someone', average: '85', image: 'not found'},
         ],
         refreshing: false,
         loading: false,
@@ -36,17 +21,13 @@ class List extends React.Component {
         return(
             <SafeAreaView style={globalStyles.container}>
                 <View style={globalStyles.container}>
-                    <Text style={{fontSize: 50,fontWeight: 'bold',margin: 20}}  >It appears like you have no chats...</Text>
-                    <Button 
-                        style={styles.titleText} 
-                        title="Start a new one!"
-                        /*onPress={}*/ />
+                    <Text style={{fontSize: 50,fontWeight: 'bold',margin: 20}}  >It appears like you have no students...</Text>
                 </View>
             </SafeAreaView>
         )
     }
       
-      fetchChats = () => {
+      fetchStudents = () => {
           this.setState({loading: true})
 
           // Load all the data for the chat list from the server
@@ -58,12 +39,12 @@ class List extends React.Component {
 
       handleRefresh = () => {
           this.setState({refreshing: true}, () => {
-              this.fetchChats()
+              this.fetchStudents()
           })
       }
-      goToChat = (person) => {
+      goToStudent = (student) => {
           // Fetch all the conversation's messages
-          this.props.navigation.navigate('Conversation', { person: person })
+          this.props.navigation.navigate('GradeList', { student: student })
       }
     render() {
         return(
@@ -71,7 +52,6 @@ class List extends React.Component {
             {/*For a tutorial on flatlists, see:
             https://medium.com/react-native-development/how-to-use-the-flatlist
             -component-react-native-basics-92c482816fe6*/}
-
                 <FlatList
                     style={styles.list}
                     // inverted={true}
@@ -80,22 +60,22 @@ class List extends React.Component {
                     refreshing={this.state.refreshing}
                     onRefresh={this.handleRefresh}
                     keyExtractor={item=> item.id}
-                    data={this.state.chats}
+                    data={this.state.students}
                     renderItem={
                         ({item, index}) => 
                             <TouchableHighlight
                                 underlayColor={'rgba(114,46,209,0.1)'}
-                                onPress={() => this.goToChat(item.with)}
+                                onPress={() => this.goToStudent(item.name)}
                                >
-                                <Cell title={item.with} detail={item.lastText} />
+                                <Cell title={item.name} detail={"Average: "+item.average} />
                             </TouchableHighlight>
                     }  />
-            </View>
+                </View>
         )
     }
 }
 
-export default List;
+export default StudentList
 
 const styles = StyleSheet.create({
     list: {

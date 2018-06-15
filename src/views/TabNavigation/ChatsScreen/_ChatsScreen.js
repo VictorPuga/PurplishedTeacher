@@ -18,7 +18,7 @@ const AccountNavigation = createStackNavigator({
     Conversation: { 
         screen: Conversation,
         navigationOptions: ({ navigation }) => ({
-            title: 'Chat with [someone]',
+            title: 'Chat with ' + navigation.getParam('person', 'someone'),
             headerStyle: styles.header,
             headerTintColor: 'whitesmoke',
             headerTitleStyle: styles.headerTitle

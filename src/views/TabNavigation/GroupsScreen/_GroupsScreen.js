@@ -1,41 +1,45 @@
 import {createStackNavigator} from 'react-navigation'
 
-import Groups from './Groups'
-import Students from './Students'
-import Grades from './Grades'
+import GroupList from './GroupList'
+import StudentList from './StudentList'
+import GradeList from './GradeList'
+import GradeDetail from './GradeDetail'
 
 
 
 const GroupNavigation = createStackNavigator({
-    Groups: { 
-        screen: Groups,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Groups',
-            headerStyle: styles.header,
-            headerTitleStyle: styles.headerTitle
-        }),
+    GroupList: { 
+        screen: GroupList,
         },
-    Students: { 
-        screen: Students,
+    StudentList: { 
+        screen: StudentList,
         navigationOptions: ({ navigation }) => ({
-            title: '[group name]',
+            title: navigation.getParam('group', 'Group'),
             headerStyle: styles.header,
             headerTintColor: 'whitesmoke',
             headerTitleStyle: styles.headerTitle
           }), },
-    Grades: { 
-        screen: Grades,
+    GradeList: { 
+        screen: GradeList,
         navigationOptions: ({ navigation }) => ({
-            title: '[student name]',
+            title: navigation.getParam('student', 'Student'),
             headerStyle: styles.header,
             headerTintColor: 'whitesmoke',
             headerTitleStyle: styles.headerTitle
           }),
+    },
+    GradeDetail :  {
+        screen: GradeDetail,
     }
 },
 {
-    initialRouteName: 'Groups',
+    initialRouteName: 'GroupList',
     //headerMode: 'none',
+    navigationOptions: ({ navigation }) => ({
+        headerStyle: styles.header,
+        headerTitleStyle: styles.headerTitle,
+        headerTintColor: 'whitesmoke',
+    }),
 
 })
 

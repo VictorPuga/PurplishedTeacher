@@ -2,14 +2,17 @@ import React from 'react';
 import {View, Text, ScrollView, Button} from 'react-native';
 import styles from 'src/global/styles'
 
-class Grades extends React.Component {
+class GradeDetail extends React.Component {
     render() {
+        const { navigation } = this.props
+        const name = navigation.getParam('person', 'Name')
+        
         return(
             <View style={styles.container}>
-                <Text>Grades screen</Text>
+                <Text>Grade detail screen</Text>
             </View>
         )
     }
 }
 
-export default Grades;
+export default GradeDetail;
