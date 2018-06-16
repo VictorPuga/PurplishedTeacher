@@ -9,13 +9,22 @@ import globalStyles from 'src/global/styles'
 class StudentList extends React.Component {
     state = {
         students: [
-            { id: '0', name: 'person', average: '91', image: 'not found'},
-            { id: '1', name: 'someone', average: '85', image: 'not found'},
+            { name: 'John Smith', average: '91', image: 'not found'},
+            { name: 'Amy Pond', average: '85', image: 'not found'},
+            { name: 'Clara Oswald', average: '90', image: 'not found'},
+            { name: 'Sam Flynn', average: '94', image: 'not found'},
+            { name: 'Mecho', average: '10/10', image: 'not found'},
+            { name: 'Mein Fhurer', average: '40', image: 'not found'},
+            { name: 'John Appleseed', average: '89', image: 'not found'},
         ],
         refreshing: false,
         loading: false,
     }
-
+    static navigationOptions = ({ navigation }) => {
+        return {
+          title: navigation.getParam('group', 'Students'),
+        };
+      };
     renderSeparator = () => <View style={styles.separator}/>
     renderEmptyComponent = () => {
         return(
@@ -27,24 +36,22 @@ class StudentList extends React.Component {
         )
     }
       
-      fetchStudents = () => {
-          this.setState({loading: true})
+    fetchStudents = () => {
+        this.setState({loading: true})
 
-          // Load all the data for the chat list from the server
-          // Don't request all the chats, just some. Like 20
-          // Also fetch the last message of each chat
+        // Make a request to Dynamo
 
-          this.setState({refreshing: false, loading: false})
-      }
+        this.setState({refreshing: false, loading: false})
+    }
 
-      handleRefresh = () => {
+    handleRefresh = () => {
           this.setState({refreshing: true}, () => {
               this.fetchStudents()
           })
       }
-      goToStudent = (student) => {
-          // Fetch all the conversation's messages
-          this.props.navigation.navigate('GradeList', { student: student })
+    goToStudent = (student) => {
+        // Make a request to Dynamo
+        this.props.navigation.navigate('AssignmentList', { student: student })
       }
     render() {
         return(
@@ -59,7 +66,7 @@ class StudentList extends React.Component {
                     ListEmptyComponent={this.renderEmptyComponent}
                     refreshing={this.state.refreshing}
                     onRefresh={this.handleRefresh}
-                    keyExtractor={item=> item.id}
+                    keyExtractor={item=> item.name}
                     data={this.state.students}
                     renderItem={
                         ({item, index}) => 

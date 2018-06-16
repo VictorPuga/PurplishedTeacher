@@ -15,10 +15,10 @@ class GroupList extends React.Component {
         loading: false,
     }
     static navigationOptions = {
-        title: 'hey'
+        title: 'Groups'
     }
 
-    renderSeparator = () => <View style={styles.separator}/>
+    renderSeparator = () => <View />
     renderEmptyComponent = () => {
         return(
             <SafeAreaView style={globalStyles.container}>
@@ -29,25 +29,23 @@ class GroupList extends React.Component {
         )
     }
       
-      fetchGroups = () => {
-          this.setState({loading: true})
+    fetchGroups = () => {
+        this.setState({loading: true})
 
-          // Load all the data for the chat list from the server
-          // Don't request all the chats, just some. Like 20
-          // Also fetch the last message of each chat
+        // Make a request to Dynamo
 
-          this.setState({refreshing: false, loading: false})
-      }
+        this.setState({refreshing: false, loading: false})
+    }
 
-      handleRefresh = () => {
-          this.setState({refreshing: true}, () => {
-              this.fetchGroups()
-          })
-      }
-      goToGroup = (group) => {
-          // Fetch all the conversation's messages
-          this.props.navigation.navigate('StudentList', { group: group })
-      }
+    handleRefresh = () => {
+        this.setState({refreshing: true}, () => {
+            this.fetchGroups()
+        })
+    }
+    goToGroup = (group) => {
+        // Make a request to Dynamo
+        this.props.navigation.navigate('StudentList', { group: group })
+    }
     render() {
         return(
             <View style={globalStyles.container}>

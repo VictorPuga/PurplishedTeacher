@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button, FlatList, TouchableHighlight, StyleSheet, Image, SafeAreaView } from 'react-native';
+import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {Aux} from 'src/global/hoc'
@@ -9,12 +9,24 @@ import globalStyles from 'src/global/styles'
 class GradeList extends React.Component {
     state = {
         grades: [
-            { id: '0', assignment: 'activity 1', grade: '90' },
-            { id: '1', assignment: 'activity 2', grade: '92' },
+            { assignment: 'Activity 1', grade: '90' },
+            { assignment: 'Activity 2', grade: '92' },
+            { assignment: 'Activity 3', grade: '92' },
+            { assignment: 'Activity 4', grade: '86' },
+            { assignment: 'Activity 5', grade: '90' },
+            { assignment: 'Activity 6', grade: '89' },
+            { assignment: 'Activity 7', grade: '91' },
+            { assignment: 'Activity 8', grade: '87' },
+            { assignment: 'Activity 9', grade: '100' },
         ],
         refreshing: false,
         loading: false,
     }
+    static navigationOptions = ({ navigation }) => {
+        return {
+          title: navigation.getParam('student', 'Assignments'),
+        };
+      };
 
     renderSeparator = () => <View style={styles.separator}/>
     renderEmptyComponent = () => {
@@ -27,25 +39,23 @@ class GradeList extends React.Component {
         )
     }
       
-      fetchStudents = () => {
-          this.setState({loading: true})
+    fetchAssignments = () => {
+        this.setState({loading: true})
 
-          // Load all the data for the chat list from the server
-          // Don't request all the chats, just some. Like 20
-          // Also fetch the last message of each chat
+        // Make a request to Dynamo
 
-          this.setState({refreshing: false, loading: false})
-      }
+        this.setState({refreshing: false, loading: false})
+    }
 
-      handleRefresh = () => {
-          this.setState({refreshing: true}, () => {
-              this.fetchStudents()
-          })
-      }
-      goToStudent = (student) => {
-          // Fetch all the conversation's messages
-          this.props.navigation.navigate('Grades', { student: student })
-      }
+    handleRefresh = () => {
+        this.setState({refreshing: true}, () => {
+            this.fetchAssignments()
+        })
+    }
+    goToAssignment = (assignment) => {
+    // Make a request to Dynamo
+    this.props.navigation.navigate('AssignmentDetail', { assignment: assignment })
+    }
     render() {
         return(
             <View style={globalStyles.container}>
@@ -54,23 +64,19 @@ class GradeList extends React.Component {
             -component-react-native-basics-92c482816fe6*/}
                 <FlatList
                     style={styles.list}
-                    // inverted={true}
                     ItemSeparatorComponent={this.renderSeparator}
                     ListEmptyComponent={this.renderEmptyComponent}
                     refreshing={this.state.refreshing}
                     onRefresh={this.handleRefresh}
-                    keyExtractor={item=> item.id}
+                    keyExtractor={item=> item.assignment}
                     data={this.state.grades}
                     renderItem={
                         ({item, index}) => 
-                            <TouchableHighlight
-                                underlayColor={'rgba(114,46,209,0.1)'}
-                                onPress={() => this.goToStudent(item.name)}
-                               >
-                                <Cell main={item.assignment} detail={item.grade} />
-                            </TouchableHighlight>
+                                <Cell 
+                                    main={item.assignment} 
+                                    detail={item.grade} 
+                                    pressed={()=>this.goToAssignment(item.assignment)} />
                     }  />
-                    <Cell main="test" detail="grade" />
                 </View>
         )
     }
@@ -99,6 +105,12 @@ class Cell extends React.Component {
                         <Text style={cellStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
                     </View>
                 </View>
+                <TouchableOpacity
+                    onPress={this.props.pressed}>
+                    <View style={cellStyles.detailButton}>
+                        <Ionicons name="ios-information-circle-outline" size={25} color="#1D9BF6" />
+                    </View>
+                </TouchableOpacity>
             </SafeAreaView>
         )
     }
@@ -130,4 +142,8 @@ const cellStyles = StyleSheet.create({
         color: '#9A9A9A',
         alignSelf: 'flex-end',
     },  
+    detailButton: {
+        marginRight:10,
+        alignItems: 'center',
+    }
 })

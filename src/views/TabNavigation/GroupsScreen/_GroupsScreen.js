@@ -2,8 +2,8 @@ import {createStackNavigator} from 'react-navigation'
 
 import GroupList from './GroupList'
 import StudentList from './StudentList'
-import GradeList from './GradeList'
-import GradeDetail from './GradeDetail'
+import AssignmentList from './AssignmentList'
+import AssignmentDetail from './AssignmentDetail'
 
 
 
@@ -13,23 +13,12 @@ const GroupNavigation = createStackNavigator({
         },
     StudentList: { 
         screen: StudentList,
-        navigationOptions: ({ navigation }) => ({
-            title: navigation.getParam('group', 'Group'),
-            headerStyle: styles.header,
-            headerTintColor: 'whitesmoke',
-            headerTitleStyle: styles.headerTitle
-          }), },
-    GradeList: { 
-        screen: GradeList,
-        navigationOptions: ({ navigation }) => ({
-            title: navigation.getParam('student', 'Student'),
-            headerStyle: styles.header,
-            headerTintColor: 'whitesmoke',
-            headerTitleStyle: styles.headerTitle
-          }),
     },
-    GradeDetail :  {
-        screen: GradeDetail,
+    AssignmentList: { 
+        screen: AssignmentList,
+    },
+    AssignmentDetail :  {
+        screen: AssignmentDetail,
     }
 },
 {
