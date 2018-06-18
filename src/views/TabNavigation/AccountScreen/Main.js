@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet, SafeAreaView, SectionList, TouchableHighlight} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {CardCell} from 'src/global/UI'
 
 
 import globalStyles from 'src/global/styles'
@@ -60,18 +61,27 @@ class Main extends React.Component {
         return(
             <View style={globalStyles.container}>
                 <SectionList
-                    renderItem={({item, index, section}) => <Text key={index}>{item}</Text>}
-                    renderSectionHeader={({section: {title}}) => (
-                        <Text style={{fontWeight: 'bold'}}>{title}</Text>
-                    )}
+                    style={styles.list}
+                    ItemSeparatorComponent={this.renderSeparator}
+                    refreshing={this.state.refreshing}
+                    onRefresh={this.handleRefresh}
+                    keyExtractor={(item, index) => item + index}
                     sections={[
                         {title: 'Title1', data: ['item1', 'item2']},
                         {title: 'Title2', data: ['item3', 'item4']},
                         {title: 'Title3', data: ['item5', 'item6']},
                     ]}
-                    keyExtractor={(item, index) => item + index}
+                    renderItem={
+                        ({item, index, section}) => 
+                            <Text key={index}>{item}</Text>
+                    }
+                    renderSectionHeader={
+                        ({section: {title}}) => (
+                        <Text style={{fontWeight: 'bold'}}>{title}</Text>
+                    )}
+                    
+                    
                     />
-
                     <Cell main="hey" detail="hello" />
             </View>
         )
@@ -85,6 +95,7 @@ const styles = StyleSheet.create({
     },
     list: {
         width: '100%',
+        backgroundColor: 'red'
      },
     title: {
         fontSize: 50,
@@ -120,6 +131,17 @@ class Cell extends React.Component {
                 <View style={cellStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="gray" /></View>
             </SafeAreaView>
         )
+    }
+}
+
+class Header extends React.Component {
+    render() {
+        return(
+            <View>
+                
+            </View>
+        )
+        
     }
 }
 
