@@ -83,12 +83,10 @@ class List extends React.Component {
                     data={this.state.chats}
                     renderItem={
                         ({item, index}) => 
-                            <TouchableHighlight
-                                underlayColor={'rgba(114,46,209,0.1)'}
-                                onPress={() => this.goToChat(item.with)}
-                               >
-                                <Cell title={item.with} detail={item.lastText} />
-                            </TouchableHighlight>
+                            <Cell 
+                                title={item.with} 
+                                detail={item.lastText} 
+                                pressed= {() => this.goToChat(item.with)}/>
                     }  />
             </View>
         )
@@ -111,16 +109,20 @@ const styles = StyleSheet.create({
 class Cell extends React.Component {
     render() {
         return(
-            <SafeAreaView style={cellStyles.cell}>
-                <Image 
-                    style={cellStyles.image} 
-                        source={{uri: 'https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552&format=original'}} />
-                <View style={cellStyles.textContainer}>
-                    <Text style={cellStyles.titleText} numberOfLines={1} >{this.props.title}</Text>
-                    <Text style={cellStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
-                </View>
-                <View style={cellStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="gray" /></View>
-            </SafeAreaView>
+            <TouchableHighlight 
+                underlayColor={'rgba(114,46,209,0.1)'}
+                onPress={this.props.pressed}>
+                <SafeAreaView style={cellStyles.cell}>
+                    <Image 
+                        style={cellStyles.image} 
+                            source={{uri: 'https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552&format=original'}} />
+                    <View style={cellStyles.textContainer}>
+                        <Text style={cellStyles.titleText} numberOfLines={1} >{this.props.title}</Text>
+                        <Text style={cellStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
+                    </View>
+                    <View style={cellStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="gray" /></View>
+                </SafeAreaView>
+            </TouchableHighlight>
         )
     }
 }

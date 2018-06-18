@@ -22,9 +22,7 @@ class GroupList extends React.Component {
     renderEmptyComponent = () => {
         return(
             <SafeAreaView style={globalStyles.container}>
-                <View style={globalStyles.container}>
                     <Text style={{fontSize: 50,fontWeight: 'bold',margin: 20}}  >It appears like you have no groups...</Text>
-                </View>
             </SafeAreaView>
         )
     }
@@ -63,12 +61,10 @@ class GroupList extends React.Component {
                     data={this.state.groups}
                     renderItem={
                         ({item, index}) => 
-                            <TouchableHighlight
-                                underlayColor={'rgba(114,46,209,0.1)'}
-                                onPress={() => this.goToGroup(item.name)}
-                               >
-                                <Card title={item.name} detail={item.students +" students"} />
-                            </TouchableHighlight>
+                            <Card 
+                                title={item.name} 
+                                detail={item.students +" students"}   
+                                pressed={() => this.goToGroup(item.name)}/>
                     }  />
             </View>
         )
@@ -98,16 +94,20 @@ const styles = StyleSheet.create({
 class Card extends React.Component {
     render() {
         return(
-            <SafeAreaView style={cardStyles.card}>
-                <Image 
-                    style={cardStyles.image} 
-                        source={{uri: 'https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552&format=original'}} />
-                <View style={cardStyles.textContainer}>
-                    <Text style={cardStyles.titleText} numberOfLines={1} >{this.props.title}</Text>
-                    <Text style={cardStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
-                </View>
-                <View style={cardStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="gray" /></View>
-            </SafeAreaView>
+            <TouchableHighlight 
+                underlayColor={'rgba(114,46,209,0.1)'}
+                onPress={this.props.pressed}>
+                <SafeAreaView style={cardStyles.card}>
+                    <Image 
+                        style={cardStyles.image} 
+                            source={{uri: 'https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552&format=original'}} />
+                    <View style={cardStyles.textContainer}>
+                        <Text style={cardStyles.titleText} numberOfLines={1} >{this.props.title}</Text>
+                        <Text style={cardStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
+                    </View>
+                    <View style={cardStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="gray" /></View>
+                </SafeAreaView>
+            </TouchableHighlight>
         )
     }
 }
