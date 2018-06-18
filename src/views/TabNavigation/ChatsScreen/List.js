@@ -30,6 +30,9 @@ class List extends React.Component {
         refreshing: false,
         loading: false,
     }
+    static navigationOptions = {
+        title: 'Chats'
+    }
 
     renderSeparator = () => <View style={styles.separator}/>
     renderEmptyComponent = () => {

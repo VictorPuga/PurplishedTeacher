@@ -3,6 +3,11 @@ import {View, Text, ScrollView, Button} from 'react-native';
 import styles from 'src/global/styles'
 
 class Conversation extends React.Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+          title: navigation.getParam('person', 'Name'),
+        };
+      };
     render() {
         const { navigation } = this.props
         const name = navigation.getParam('person', 'Name')

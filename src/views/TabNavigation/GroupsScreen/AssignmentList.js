@@ -1,8 +1,7 @@
 import React from 'react'
 import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {Aux} from 'src/global/hoc'
+import {InfoButtonCell} from 'src/global/UI'
 
 import globalStyles from 'src/global/styles'
 
@@ -29,6 +28,7 @@ class GradeList extends React.Component {
       };
 
     renderSeparator = () => <View style={styles.separator}/>
+
     renderEmptyComponent = () => {
         return(
             <SafeAreaView style={globalStyles.container}>
@@ -52,10 +52,12 @@ class GradeList extends React.Component {
             this.fetchAssignments()
         })
     }
+
     goToAssignment = (assignment) => {
     // Make a request to Dynamo
     this.props.navigation.navigate('AssignmentDetail', { assignment: assignment })
     }
+    
     render() {
         return(
             <View style={globalStyles.container}>
@@ -72,7 +74,7 @@ class GradeList extends React.Component {
                     data={this.state.grades}
                     renderItem={
                         ({item, index}) => 
-                                <Cell 
+                                <InfoButtonCell 
                                     main={item.assignment} 
                                     detail={item.grade} 
                                     pressed={()=>this.goToAssignment(item.assignment)} />
@@ -95,55 +97,3 @@ const styles = StyleSheet.create({
     }
 })
 
-class Cell extends React.Component {
-    render() {
-        return(
-            <SafeAreaView style={cellStyles.cell}>
-                <View style={cellStyles.textContainer}>
-                    <Text style={cellStyles.mainText} numberOfLines={1} >{this.props.main}</Text>
-                    <View style={cellStyles.detailTextContainer}>
-                        <Text style={cellStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
-                    </View>
-                </View>
-                <TouchableOpacity
-                    onPress={this.props.pressed}>
-                    <View style={cellStyles.detailButton}>
-                        <Ionicons name="ios-information-circle-outline" size={25} color="#1D9BF6" />
-                    </View>
-                </TouchableOpacity>
-            </SafeAreaView>
-        )
-    }
-}
-
-const cellStyles = StyleSheet.create({
-    cell: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 40,
-    },
-    textContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: 10,
-        paddingRight: 10
-    }, 
-    detailTextContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        paddingLeft: 10,
-    }, 
-    mainText: {
-        fontSize: 20,
-    },  
-    detailText: {
-        fontSize: 18,
-        color: '#9A9A9A',
-        alignSelf: 'flex-end',
-    },  
-    detailButton: {
-        marginRight:10,
-        alignItems: 'center',
-    }
-})

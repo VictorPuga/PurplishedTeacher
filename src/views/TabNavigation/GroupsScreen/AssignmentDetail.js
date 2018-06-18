@@ -1,42 +1,98 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet, SafeAreaView, SectionList, NavigatorIOS} from 'react-native';
+import {DetailCell, SectionHeader} from 'src/global/UI'
+
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 import globalStyles from 'src/global/styles'
 
-class AssignmentDetail extends React.Component {
-
+class Main extends React.Component {
     state = {
-        assignment: {
-            grade: 92,
-            details: 'This was an assignment that has been already checked.'
-        }
+        data: [
+
+        ],
+        refreshing: false,
+        loading: false,
     }
-    static navigationOptions = ({ navigation }) => {
-        return {
-          title: navigation.getParam('assignment', 'Assignment'),
-        };
-      };
+
+    static navigationOptions ={
+          title: 'Account',
+    };
+       
+    renderHeader = () => (
+        <View style={styles.header} aspectRatio={2}>
+            <Ionicons name="ios-list-box-outline" size={200} color="#C1C1C1" />
+        </View>
+    )
+
+    renderSeparator = () => <View style={styles.separator} />
+
+    renderEmptyComponent= () => <View />
+      
+    fetchData = () => {
+        this.setState({loading: true})
+
+        // Make a request to Dynamo
+
+        this.setState({refreshing: false, loading: false})
+    }
+
+    handleRefresh = () => {
+        this.setState({refreshing: true}, () => {
+            this.fetchData()
+        })
+    }
+
     render() {
         return(
-            <View style={styles.myContainer}>
-                <View style={styles.square} aspectRatio={2} />
-                <Text>Grade detail screen</Text>
-            </View>
+            <SafeAreaView style={globalStyles.container}>
+                <SectionList
+                    style={styles.list}
+                    ItemSeparatorComponent={this.renderSeparator}
+                    ListHeaderComponent={this.renderHeader}
+                    refreshing={this.state.refreshing}
+                    onRefresh={this.handleRefresh}
+                    keyExtractor={(item, index) => item + index}
+                    sections={[
+                        {title: 'Config group 1', data: ['Some config 1', 'Some config 2']},
+                        {title: 'Config group 2', data: ['Some config 3', 'Some config 4']},
+                    ]}
+                    renderItem={
+                        ({item, index, section}) => 
+                            <DetailCell  
+                                key={index} 
+                                main={item}  />
+                    }
+                    renderSectionHeader={
+                        ({section: {title}}) => (
+                        <SectionHeader text={title}/>
+                    )}
+                    />
+            </SafeAreaView>
         )
     }
 }
 
-const styles = StyleSheet.create({
-    square: {
-        width: '100%',
-        backgroundColor: 'blue',
-    },
-    myContainer: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        //justifyContent: 'center',
-      },
-})
+export default Main;
 
-export default AssignmentDetail;
+const styles = StyleSheet.create({
+    header: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    list: {
+        width: '100%',
+        backgroundColor: '#EFEFF4'
+     },
+    title: {
+        fontSize: 50,
+        fontWeight: 'bold',
+    },
+    separator: {
+        height: 0.5,
+        width: "100%",
+        backgroundColor: "#F0F0F1",
+    }
+})

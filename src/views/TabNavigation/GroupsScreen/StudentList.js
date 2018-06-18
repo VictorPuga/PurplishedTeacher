@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Button, FlatList, TouchableHighlight, StyleSheet, Image, SafeAreaView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {Aux} from 'src/global/hoc'
+import {TitleCell} from 'src/global/UI'
 
 import globalStyles from 'src/global/styles'
 
@@ -26,6 +26,7 @@ class StudentList extends React.Component {
         };
       };
     renderSeparator = () => <View style={styles.separator}/>
+    
     renderEmptyComponent = () => {
         return(
             <SafeAreaView style={globalStyles.container}>
@@ -70,7 +71,7 @@ class StudentList extends React.Component {
                     data={this.state.students}
                     renderItem={
                         ({item, index}) => 
-                                <Cell 
+                                <TitleCell 
                                     title={item.name} 
                                     detail={"Average: "+item.average} 
                                     pressed={() => this.goToStudent(item.name)}/>
@@ -91,56 +92,4 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: "#F0F0F1",
     }
-})
-
-class Cell extends React.Component {
-    render() {
-        return(
-            <TouchableHighlight 
-                underlayColor={'rgba(114,46,209,0.1)'}
-                onPress={this.props.pressed}>
-                <SafeAreaView style={cellStyles.cell}>
-                    <Image 
-                        style={cellStyles.image} 
-                            source={{uri: 'https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552&format=original'}} />
-                    <View style={cellStyles.textContainer}>
-                        <Text style={cellStyles.titleText} numberOfLines={1} >{this.props.title}</Text>
-                        <Text style={cellStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
-                    </View>
-                    <View style={cellStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="gray" /></View>
-                </SafeAreaView>
-            </TouchableHighlight>
-        )
-    }
-}
-
-const cellStyles = StyleSheet.create({
-    cell: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 70,
-    },
-    textContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        padding: 10
-    }, 
-    titleText: {
-        width: '100%',
-        fontSize: 25,
-        fontWeight: 'bold',
-    }, 
-    detailText: {
-        
-    },
-    image: {
-        width: 50, 
-        height: 50, 
-        borderRadius: 25, // height / 2 = round image
-        marginLeft: 10
-    },
-    detailButton: {
-        marginRight:10
-    }
-    
 })

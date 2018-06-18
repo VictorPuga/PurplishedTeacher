@@ -8,25 +8,18 @@ import Conversation from './Conversation'
 const AccountNavigation = createStackNavigator({
     List: { 
         screen: List,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Chats',
-            headerStyle: styles.header,
-            headerTintColor: 'whitesmoke',
-            headerTitleStyle: styles.headerTitle
-          }),
     },
     Conversation: { 
         screen: Conversation,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Chat with ' + navigation.getParam('person', 'someone'),
-            headerStyle: styles.header,
-            headerTintColor: 'whitesmoke',
-            headerTitleStyle: styles.headerTitle
-          }),
     },
 },
 {
     initialRouteName: 'List',
+    navigationOptions: ({ navigation }) => ({
+        headerStyle: styles.header,
+        headerTitleStyle: styles.headerTitle,
+        headerTintColor: 'whitesmoke',
+    }),
 })
 
 export default AccountNavigation

@@ -6,25 +6,18 @@ import Detail from './Detail'
 const AccountNavigation = createStackNavigator({
     Main: { 
         screen: Main,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Account',
-            headerStyle: styles.header,
-            headerTintColor: 'whitesmoke',
-            headerTitleStyle: styles.headerTitle
-          }),
     },
     Detail: { 
         screen: Detail,
-        navigationOptions: ({ navigation }) => ({
-            title: '[some setting]',
-            headerStyle: styles.header,
-            headerTitleStyle: styles.headerTitle,
-            headerTintColor: 'whitesmoke',
-          }),
     },
 },
 {
     initialRouteName: 'Main',
+    navigationOptions: ({ navigation }) => ({
+        headerStyle: styles.header,
+        headerTintColor: 'whitesmoke',
+        headerTitleStyle: styles.headerTitle
+      }),
 })
 
 export default AccountNavigation

@@ -1,7 +1,9 @@
 import React from 'react'
-import {View} from 'react-native'
+import { View, Text, TouchableHighlight, StyleSheet, Image, SafeAreaView, ActivityIndicator} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-class Cell extends React.Component {
+
+class TitleCell extends React.Component {
     render() {
         return(
             <TouchableHighlight 
@@ -15,18 +17,21 @@ class Cell extends React.Component {
                         <Text style={cellStyles.titleText} numberOfLines={1} >{this.props.title}</Text>
                         <Text style={cellStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
                     </View>
-                    <View style={cellStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="gray" /></View>
+                    <View style={cellStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="#D1D1D1" /></View>
                 </SafeAreaView>
             </TouchableHighlight>
         )
     }
 }
 
+export default TitleCell
+
 const cellStyles = StyleSheet.create({
     cell: {
         flexDirection: 'row',
         alignItems: 'center',
         height: 70,
+        backgroundColor: 'white',
     },
     textContainer: {
         flex: 1,
@@ -53,4 +58,3 @@ const cellStyles = StyleSheet.create({
     
 })
 
-export default Cell

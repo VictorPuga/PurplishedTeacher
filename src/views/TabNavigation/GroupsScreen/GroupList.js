@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, Button, FlatList, TouchableHighlight, StyleSheet, Image, SafeAreaView} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {View, Text, Button, FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import {CardCell} from 'src/global/UI'
 
 import globalStyles from 'src/global/styles'
 
@@ -61,7 +61,7 @@ class GroupList extends React.Component {
                     data={this.state.groups}
                     renderItem={
                         ({item, index}) => 
-                            <Card 
+                            <CardCell 
                                 title={item.name} 
                                 detail={item.students +" students"}   
                                 pressed={() => this.goToGroup(item.name)}/>
@@ -91,53 +91,3 @@ const styles = StyleSheet.create({
     }
 })
 
-class Card extends React.Component {
-    render() {
-        return(
-            <TouchableHighlight 
-                underlayColor={'rgba(114,46,209,0.1)'}
-                onPress={this.props.pressed}>
-                <SafeAreaView style={cardStyles.card}>
-                    <Image 
-                        style={cardStyles.image} 
-                            source={{uri: 'https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552&format=original'}} />
-                    <View style={cardStyles.textContainer}>
-                        <Text style={cardStyles.titleText} numberOfLines={1} >{this.props.title}</Text>
-                        <Text style={cardStyles.detailText} numberOfLines={1} >{this.props.detail}</Text>
-                    </View>
-                    <View style={cardStyles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="gray" /></View>
-                </SafeAreaView>
-            </TouchableHighlight>
-        )
-    }
-}
-
-const cardStyles = StyleSheet.create({
-    card: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 70,
-    },
-    textContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        padding: 10
-    }, 
-    titleText: {
-        width: '100%',
-        fontSize: 25,
-        fontWeight: 'bold',
-    }, 
-    detailText: {
-        
-    },
-    image: {
-        width: 50, 
-        height: 50, 
-        borderRadius: 25, // height / 2 = round image
-        marginLeft: 10
-    },
-    detailButton: {
-        marginRight:10
-    }
-})

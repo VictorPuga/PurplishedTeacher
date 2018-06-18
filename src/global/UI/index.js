@@ -1,3 +1,6 @@
 export {default as CardCell} from './Cells/CardCell'
-export {default as InfoDetailCell} from './Cells/InfoDetailCell'
-export {default as TitleDetailCell} from './Cells/TitleDetailCell'
+export {default as InfoButtonCell} from './Cells/InfoButtonCell'
+export {default as TitleCell} from './Cells/TitleCell'
+export {default as SettingsCell} from './Cells/SettingsCell'
+export {default as DetailCell} from './Cells/DetailCell'
+export {default as SectionHeader} from './SectionHeader'
