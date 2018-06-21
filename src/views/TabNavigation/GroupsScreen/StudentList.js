@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList, TouchableHighlight, StyleSheet, Image, SafeAreaView } from 'react-native';
+import { View, Text , FlatList, StyleSheet, SafeAreaView, StatusBar  } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {TitleCell} from 'src/global/UI'
@@ -26,7 +26,7 @@ class StudentList extends React.Component {
         };
       };
 
-      componentWillMount() {
+    componentWillMount() {
         this._navListener = this.props.navigation.addListener('didFocus', () => {
             StatusBar.setHidden(false);
           });

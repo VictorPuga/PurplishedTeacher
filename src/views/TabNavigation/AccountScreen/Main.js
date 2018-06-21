@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StatusBar, Button, StyleSheet, SafeAreaView, SectionList} from 'react-native';
+import {View , Button, StyleSheet , SectionList} from 'react-native';
 import {SettingsCell, SectionHeader} from 'src/global/UI'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 

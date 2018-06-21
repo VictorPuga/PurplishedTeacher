@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, Button} from 'react-native';
+import {View, Text , Button} from 'react-native';
 import styles from 'src/global/styles'
 
 class Conversation extends React.Component {

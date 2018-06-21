@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList, StatusBar, StyleSheet, Image, SafeAreaView} from 'react-native';
+import { View, Text, Button, FlatList , StyleSheet, Image, SafeAreaView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {TitleCell} from 'src/global/UI'

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, Alert, StatusBar } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, Alert  } from 'react-native';
 import { Camera, Permissions } from 'expo';
 import { Ionicons } from '@expo/vector-icons'
 import DoubleClick from 'react-native-double-click'
@@ -9,7 +9,7 @@ export default class CheckScreen extends React.Component {
     state = {
         hasCameraPermission: null,
         type: Camera.Constants.Type.back,
-        flashMode: Camera.Constants.FlashMode.auto,
+        flashMode: Camera.Constants.FlashMode.off,
         showInstructions: true
     };
 
@@ -34,6 +34,14 @@ export default class CheckScreen extends React.Component {
           });
     }
 
+    toggleFlashMode = () => {
+        this.setState({
+            flashMode: this.state.flashMode === Camera.Constants.FlashMode.off
+              ? Camera.Constants.FlashMode.torch
+              : Camera.Constants.FlashMode.off
+          });
+    }
+
     takePicture = () => {
         Alert.alert('picture taken')
     }
@@ -54,10 +62,10 @@ export default class CheckScreen extends React.Component {
                     <DoubleClick onClick={this.takePicture} style={globalStyles.fullFlex} >
                         <View  style={globalStyles.fullFlex} >
                             <TopArea 
-                                toggleFlashMode={()=>console.log('hey')}
-                                flashMode={this.state.flashMode} />
+                                toggleFlashMode={this.toggleFlashMode}
+                                flashMode={this.state.flashMode}
+                                toggleCameraMode={this.toggleCameraMode} />
                             <View style={globalStyles.fullFlex} ></View>
-                            <BottomArea toggleCameraMode={this.toggleCameraMode} />
                         </View>
                     </DoubleClick> 
                 </Camera>
@@ -80,64 +88,36 @@ class TopArea extends React.Component {
     }
 
     render() {
-        const controls = this.state.showControls ? 
-            <View style={styles.controlGroup} >
-                <TouchableOpacity activeOpacity={0.5}>
-                    <Text style={styles.controls} >Auto</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <Text style={styles.controls} >On</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <Text style={styles.controls} >Off</Text>
-                </TouchableOpacity>
-            </View>
-            : null 
-
         return(
             <SafeAreaView style={{backgroundColor: 'black'}} >
                 <View style={styles.topArea} >
                 <TouchableOpacity 
                         style={{justifyContent: 'center'}} 
-                        onPress={this.toggleControls}
+                        onPress={this.props.toggleFlashMode}
                         activeOpacity={0.5}>
                         <Ionicons name="ios-flash" size={30} color="#FEC309" style={styles.flash} />
                     </TouchableOpacity>
-                    {controls}
+                    <TouchableOpacity activeOpacity={0.7} onPress={this.props.toggleCameraMode} >
+                        <Ionicons name="ios-reverse-camera-outline" size={50} color="#FEC309" style={styles.reverse} />
+                    </TouchableOpacity>
                 </View>
             </SafeAreaView>
         )
     }
 }
 
-class BottomArea extends React.Component {
-    render() {
-        return(
-            <SafeAreaView style={styles.bottomArea}>
-                    <TouchableOpacity activeOpacity={0.7} onPress={this.props.toggleCameraMode} >
-                        <Ionicons name="ios-reverse-camera-outline" size={50} color="#FEC309" style={styles.reverse} />
-                    </TouchableOpacity>
-            </SafeAreaView>
-        )
-    }
-}
-
-
 const styles = StyleSheet.create({
     topArea: {
-        backgroundColor: 'black',
-        height: 40,
+        backgroundColor: 'red',
+        height: 50,
+
         flexDirection: 'row'
     },
-    bottomArea: {
-        alignItems: 'flex-end',
-        padding: 10,
-    },
     flash: {
-        marginLeft: 10
+        marginHorizontal: 10
     }, 
     reverse: {
-        marginRight: 10,
+        marginHorizontal: 10,
     },
     controls: {
         color: '#F8F8F8',

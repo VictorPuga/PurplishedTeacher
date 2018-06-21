@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, FlatList, StyleSheet, SafeAreaView, StatusBar} from 'react-native';
+import {View, Text , FlatList, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import {CardCell} from 'src/global/UI'
 
 import globalStyles from 'src/global/styles'

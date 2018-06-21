@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
+import { View, Text , FlatList, StyleSheet, SafeAreaView, StatusBar  } from 'react-native';
 
 import {InfoButtonCell} from 'src/global/UI'
 
@@ -27,7 +27,7 @@ class GradeList extends React.Component {
         };
       };
 
-      componentWillMount() {
+    componentWillMount() {
         this._navListener = this.props.navigation.addListener('didFocus', () => {
             StatusBar.setHidden(false);
           });
