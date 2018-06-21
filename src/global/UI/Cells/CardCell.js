@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, Text, TouchableHighlight, StyleSheet, Image, SafeAreaView} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons'
 
 class CardCell extends React.Component {
     render() {

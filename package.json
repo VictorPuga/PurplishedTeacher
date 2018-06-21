@@ -19,12 +19,12 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^27.0.1",
+    "expo": "^28.0.0",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-native": "~0.55.2",
+    "react-native-double-click": "^1.0.5",
     "react-native-pages": "^0.7.0",
-    "react-native-vector-icons": "^4.6.0",
     "react-native-view-with-title": "^1.0.1",
     "react-navigation": "^2.2.5"
   }

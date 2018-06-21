@@ -27,6 +27,16 @@ class GradeList extends React.Component {
         };
       };
 
+      componentWillMount() {
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+            StatusBar.setHidden(false);
+          });
+    }
+
+    componentWillUnmount() {
+        this._navListener.remove();
+    }
+
     renderSeparator = () => <View style={styles.separator}/>
 
     renderEmptyComponent = () => {

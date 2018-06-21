@@ -16,9 +16,11 @@ class Main extends React.Component {
         loading: false,
     }
 
-    static navigationOptions ={
-          title: 'Account',
-    };
+    static navigationOptions = ({ navigation }) => {
+        return {
+          title: navigation.getParam('assignment', 'Assignment'),
+        };
+      };
        
     renderHeader = () => (
         <View style={styles.header} aspectRatio={2}>

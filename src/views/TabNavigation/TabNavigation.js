@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from 'react-navigation'
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons'
 import * as Views from './_index';
 
 const {GroupsScreen, CheckScreen, ChatsScreen, AccountScreen} = Views

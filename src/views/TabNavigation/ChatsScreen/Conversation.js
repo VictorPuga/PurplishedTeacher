@@ -8,6 +8,16 @@ class Conversation extends React.Component {
           title: navigation.getParam('person', 'Name'),
         };
       };
+
+      componentWillMount() {
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+            StatusBar.setHidden(false);
+          });
+    }
+
+    componentWillUnmount() {
+        this._navListener.remove();
+    }
     render() {
         const { navigation } = this.props
         const name = navigation.getParam('person', 'Name')

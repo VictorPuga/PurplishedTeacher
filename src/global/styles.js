@@ -4,10 +4,13 @@ import { StyleSheet } from 'react-native';
 const myPurple =  '#722ED1'
 
 // Global styles
-const styles = StyleSheet.create({
+const globalStyles = StyleSheet.create({
     app: {
         flex: 1,
         backgroundColor: '#fff',
+    },
+    fullFlex: {
+        flex: 1,
     },
     container: {
       flex: 1,
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
     }
   });
 
-  export default styles
+  export default globalStyles
 
   
   

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet, SafeAreaView, SectionList} from 'react-native';
+import {View, StatusBar, Button, StyleSheet, SafeAreaView, SectionList} from 'react-native';
 import {SettingsCell, SectionHeader} from 'src/global/UI'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -17,7 +17,17 @@ class Main extends React.Component {
 
     static navigationOptions ={
           title: 'Account',
-      };
+    };
+
+    componentWillMount() {
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+            StatusBar.setHidden(false);
+          });
+    }
+
+    componentWillUnmount() {
+        this._navListener.remove();
+    }
        
     renderHeader = () => (
         <View style={styles.header} aspectRatio={2}>
