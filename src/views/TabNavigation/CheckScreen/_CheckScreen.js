@@ -14,19 +14,26 @@ export default class CheckScreen extends React.Component {
     };
 
     async componentWillMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setHidden(true);
+        setTimeout(()=>this.setState({showInstructions: false}), 3000)
+        this._flashListener = this.props.navigation.addListener('didBlur', () => {
+            this.setState({flashMode: Camera.Constants.FlashMode.off,})
+
           });
+
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
         this.setState({ hasCameraPermission: status === 'granted' });
     }
 
+
+
     componentWillUnmount() {
-        this._navListener.remove();
+        this._flashListener.remove();
+        
+        
       }
-    
 
     toggleCameraMode = () => {
+        this.setState({flashMode: Camera.Constants.FlashMode.off,})
         this.setState({
             type: this.state.type === Camera.Constants.Type.back
               ? Camera.Constants.Type.front
@@ -35,11 +42,13 @@ export default class CheckScreen extends React.Component {
     }
 
     toggleFlashMode = () => {
-        this.setState({
-            flashMode: this.state.flashMode === Camera.Constants.FlashMode.off
-              ? Camera.Constants.FlashMode.torch
-              : Camera.Constants.FlashMode.off
-          });
+        if (this.state.type === Camera.Constants.Type.back) {
+            this.setState({
+                flashMode: this.state.flashMode === Camera.Constants.FlashMode.off
+                  ? Camera.Constants.FlashMode.torch
+                  : Camera.Constants.FlashMode.off
+            });
+        }
     }
 
     takePicture = () => {
@@ -48,6 +57,7 @@ export default class CheckScreen extends React.Component {
 
     render() {
         const { hasCameraPermission } = this.state;
+        const text = this.state.showInstructions ? <Text style={globalStyles.subtitle}>Double tap to check the test</Text> : null
 
         if (hasCameraPermission === null) {
             return <View />;
@@ -65,7 +75,9 @@ export default class CheckScreen extends React.Component {
                                 toggleFlashMode={this.toggleFlashMode}
                                 flashMode={this.state.flashMode}
                                 toggleCameraMode={this.toggleCameraMode} />
-                            <View style={globalStyles.fullFlex} ></View>
+                            <View style={globalStyles.fullFlex} >
+                                {text}
+                            </View>
                         </View>
                     </DoubleClick> 
                 </Camera>
@@ -88,17 +100,18 @@ class TopArea extends React.Component {
     }
 
     render() {
+        const flashIcon = this.props.flashMode === Camera.Constants.FlashMode.off ? "ios-flash-outline" : "ios-flash"
         return(
-            <SafeAreaView style={{backgroundColor: 'black'}} >
+            <SafeAreaView >
                 <View style={styles.topArea} >
                 <TouchableOpacity 
                         style={{justifyContent: 'center'}} 
                         onPress={this.props.toggleFlashMode}
                         activeOpacity={0.5}>
-                        <Ionicons name="ios-flash" size={30} color="#FEC309" style={styles.flash} />
+                        <Ionicons name={flashIcon} size={40} color="#FEC309" style={styles.icon} />
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.7} onPress={this.props.toggleCameraMode} >
-                        <Ionicons name="ios-reverse-camera-outline" size={50} color="#FEC309" style={styles.reverse} />
+                        <Ionicons name="ios-reverse-camera-outline" size={50} color="#FEC309" style={styles.icon} />
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
@@ -108,16 +121,12 @@ class TopArea extends React.Component {
 
 const styles = StyleSheet.create({
     topArea: {
-        backgroundColor: 'red',
         height: 50,
-
+        width: '30%',
         flexDirection: 'row'
     },
-    flash: {
-        marginHorizontal: 10
-    }, 
-    reverse: {
-        marginHorizontal: 10,
+    icon: {
+        marginHorizontal: 20,
     },
     controls: {
         color: '#F8F8F8',

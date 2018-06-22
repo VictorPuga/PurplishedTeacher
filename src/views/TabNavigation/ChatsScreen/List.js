@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList , StyleSheet, Image, SafeAreaView } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { View, Text, Button, FlatList , StyleSheet, SafeAreaView  } from 'react-native';
 
 import {TitleCell} from 'src/global/UI'
 
@@ -34,15 +33,6 @@ class List extends React.Component {
         title: 'Chats'
     }
 
-    componentWillMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setHidden(false);
-          });
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
-    }
 
     renderSeparator = () => <View style={styles.separator}/>
     renderEmptyComponent = () => {

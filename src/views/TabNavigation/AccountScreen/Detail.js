@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet , SectionList} from 'react-native';
+import {View, Text, Button, StyleSheet , SectionList } from 'react-native';
 import {DetailCell, SectionHeader} from 'src/global/UI'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -22,16 +22,6 @@ class Detail extends React.Component {
     static navigationOptions ={
           title: 'Account',
       };
-
-      componentWillMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setHidden(false);
-          });
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
-    }
 
     renderSeparator = () => <View style={styles.separator} />
 

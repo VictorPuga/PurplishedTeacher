@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet, SafeAreaView, SectionList, StatusBar  } from 'react-native';
+import {View, Text, Button, StyleSheet, SafeAreaView, SectionList  } from 'react-native';
 import {DetailCell, SectionHeader} from 'src/global/UI'
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -15,17 +15,6 @@ class Main extends React.Component {
         refreshing: false,
         loading: false,
     }
-
-    componentWillMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setHidden(false);
-          });
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
-      }
-
     static navigationOptions = ({ navigation }) => {
         return {
           title: navigation.getParam('assignment', 'Assignment'),

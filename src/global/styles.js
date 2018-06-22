@@ -22,6 +22,11 @@ const globalStyles = StyleSheet.create({
         fontSize: 50,
         color: myPurple
     },
+    subtitle: {
+        fontSize: 30,
+        color: myPurple,
+        fontWeight: '800',
+    },
     text: {
         fontSize: 40,
     },

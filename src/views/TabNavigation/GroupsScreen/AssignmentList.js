@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text , FlatList, StyleSheet, SafeAreaView, StatusBar  } from 'react-native';
+import { View, Text , FlatList, StyleSheet, SafeAreaView  } from 'react-native';
 
 import {InfoButtonCell} from 'src/global/UI'
 
@@ -27,15 +27,6 @@ class GradeList extends React.Component {
         };
       };
 
-    componentWillMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setHidden(false);
-          });
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
-    }
 
     renderSeparator = () => <View style={styles.separator}/>
 

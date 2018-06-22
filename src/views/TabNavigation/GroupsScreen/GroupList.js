@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text , FlatList, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import {View, Text , FlatList, StyleSheet, SafeAreaView } from 'react-native';
 import {CardCell} from 'src/global/UI'
 
 import globalStyles from 'src/global/styles'
@@ -16,16 +16,6 @@ class GroupList extends React.Component {
     }
     static navigationOptions = {
         title: 'Groups'
-    }
-
-    componentWillMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setHidden(false);
-          });
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
     }
 
     renderSeparator = () => <View />
@@ -57,7 +47,7 @@ class GroupList extends React.Component {
     render() {
         return(
             <View style={globalStyles.container}>
-            <StatusBar barStyle="light-content" />
+            
             {/*For a tutorial on flatlists, see:
             https://medium.com/react-native-development/how-to-use-the-flatlist
             -component-react-native-basics-92c482816fe6*/}

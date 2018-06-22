@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text , Button} from 'react-native';
+import {View, Text  } from 'react-native';
 import styles from 'src/global/styles'
 
 class Conversation extends React.Component {
@@ -8,16 +8,6 @@ class Conversation extends React.Component {
           title: navigation.getParam('person', 'Name'),
         };
       };
-
-      componentWillMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setHidden(false);
-          });
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
-    }
     render() {
         const { navigation } = this.props
         const name = navigation.getParam('person', 'Name')

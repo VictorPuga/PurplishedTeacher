@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text , FlatList, StyleSheet, SafeAreaView, StatusBar  } from 'react-native';
+import { View, Text , FlatList, StyleSheet, SafeAreaView  } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {TitleCell} from 'src/global/UI'
@@ -26,15 +26,6 @@ class StudentList extends React.Component {
         };
       };
 
-    componentWillMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setHidden(false);
-          });
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
-    }
     renderSeparator = () => <View style={styles.separator}/>
     
     renderEmptyComponent = () => {
