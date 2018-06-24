@@ -111,7 +111,7 @@ export default class CheckScreen extends React.Component {
                 let data = this.state.text
                 data = data.responses[0].textAnnotations[0].description;
                 this.setState({text: data})
-                console.log(this.state.text)
+                // console.log(this.state.text)
                 console.log('6')
 
 
@@ -143,7 +143,7 @@ export default class CheckScreen extends React.Component {
                     onBarCodeRead={(code)=>this.setState({qr: code.data })}
                     flashMode={this.state.flashMode}
                     type={this.state.type}>
-                    <DoubleClick onClick={this.takePictureHandler} style={globalStyles.fullFlex} >
+                    <DoubleClick onClick={()=>this.setState({modalVisible: true})}/*onClick={this.takePictureHandler}*/ style={globalStyles.fullFlex} >
                         <View  style={globalStyles.fullFlex} >
                             <TopArea 
                                 toggleFlashMode={this.toggleFlashMode}

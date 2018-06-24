@@ -1,12 +1,14 @@
 import React from 'react';
 import { Text, View, StyleSheet, SafeAreaView, Alert, Modal, Button, ScrollView } from 'react-native';
-import {FakeNav} from 'src/global/UI'
+import {FakeNav, RoundButton} from 'src/global/UI'
+import globalStyles from 'src/global/styles'
+
 
 
 class AnswerModal
  extends React.Component {
     render() {
-        const {QRText, text} = this.props
+        const {qr, text} = this.props
 
         return(
             <Modal
@@ -19,7 +21,7 @@ class AnswerModal
                         <FakeNav title="Checking test..." /> 
                     </SafeAreaView>
                     <ScrollView style={styles.scroll} >
-                        <Text>{QRText}</Text>
+                        <Text>{qr}</Text>
                         <Text>{text}</Text>
                         <Text>Name: </Text>
                         <Text> </Text>
@@ -37,7 +39,7 @@ class AnswerModal
                         <Text>12 A</Text>
                         <Text> </Text>
                         <Text>98.2</Text>
-                        <Button title="Finish" onPress={this.props.close} color="#722ed1" />
+                        <RoundButton title="Finish!" style={styles.button} onPress={this.props.close}  />
                     </ScrollView>
             </Modal>
         )
@@ -46,12 +48,13 @@ class AnswerModal
 
 export default AnswerModal
 
-const styles = StyleSheet.create
-({
+const styles = StyleSheet.create({
     scroll: {
-        padding: 20,
+        paddingHorizontal: 20,
+        marginBottom: 25,
     },
-    button: {
-        marginBottom: 10,
+    button:{
+        marginTop: 10,
+        backgroundColor: '#722ED1'
     }
 })
