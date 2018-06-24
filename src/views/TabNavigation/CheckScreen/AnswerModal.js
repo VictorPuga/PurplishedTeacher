@@ -6,7 +6,7 @@ import {FakeNav} from 'src/global/UI'
 class AnswerModal
  extends React.Component {
     render() {
-        const QRText = this.props.qr
+        const {QRText, text} = this.props
 
         return(
             <Modal
@@ -20,6 +20,7 @@ class AnswerModal
                     </SafeAreaView>
                     <ScrollView style={styles.scroll} >
                         <Text>{QRText}</Text>
+                        <Text>{text}</Text>
                         <Text>Name: </Text>
                         <Text> </Text>
                         <Text>1 A</Text>

@@ -76,66 +76,42 @@ export default class CheckScreen extends React.Component {
             catch (e) {
                 console.log('Something went wrong: ', e)
             }
-            console.log('in between')
+
+            console.log('3.5')
+
             try {
                 console.log('4')
                 const encodedImage = await this.state.base64
 
-                // await axios.post(  `https://vision.googleapis.com/v1/images:annotate?key=${key}`, {
-                //     "requests":[
-                //       {
-                //         "image":{
-                //           "source":{
-                //             "imageUri":
-                //               "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
-                //           }
-                //         },
-                //         "features":[
-                //           {
-                //             "type":"LOGO_DETECTION",
-                //             "maxResults":1
-                //           }
-                //         ]
-                //       }
-                //     ]
-                //   },
-                // )
-                //     .then( response => this.setState({text: response}))
-                //     .catch(e => console.log('Something went wrong with Google Cloud Vision'));
-                await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${key}`, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        "requests":[
+                await axios.post(`https://vision.googleapis.com/v1/images:annotate?key=${key}`, {
+                    "requests":[
+                      {
+                        "image":{
+                            "content": encodedImage
+                        },
+                        "features":[
                           {
-                            "image":{
-                              "content": encodedImage
-                            },
-                            "features":[
-                              {
-                                "type":"TEXT_DETECTION",
-                              }
-                            ]
+                            "type":"TEXT_DETECTION",
+                            "maxResults":1
                           }
                         ]
-                      })
-                })  .then(data => this.setState({text: data}))
-                    .catch(e => console.log('Something went wrong with Google Cloud Vision', e))
-
+                      }
+                    ]
+                  },
+                )
+                    .then( response => this.setState({text: response.data}))
+                    .catch(e => console.log('Something went wrong with Google Cloud Vision', e));
+               
                     console.log('5')
-                    const hey = await this.state.text
-                    await console.log(hey)
             }
             catch (e) {
-                console.log('error')
+                console.log('error', e)
             }
             finally {
-                // let text = this.state.text
-                // text = this.cleanData(text)
-                //this.setState({text: text})
+                let data = this.state.text
+                data = data.responses[0].textAnnotations[0].description;
+                this.setState({text: data})
+                console.log(this.state.text)
                 console.log('6')
 
 
@@ -145,15 +121,6 @@ export default class CheckScreen extends React.Component {
             }
         }
     }
-    
-    jsonEscape = (string) => string.replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, "");
-
-    cleanData = (data) =>  {
-        data = this.jsonEscape(data)
-        data = JSON.parse(data)//.responses[0].textAnnotations[0].description;
-        return data
-    }
-
 
     render() {
         const { hasCameraPermission } = this.state;
@@ -192,6 +159,7 @@ export default class CheckScreen extends React.Component {
                         isVisible={this.state.modalVisible} 
                         close={this.closeModal} 
                         qr={this.state.qr}
+                        text={this.state.text}
                          /> 
                 </Camera>
       );
