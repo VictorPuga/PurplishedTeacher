@@ -50,5 +50,8 @@ const styles = StyleSheet.create
 ({
     scroll: {
         padding: 20,
+    },
+    button: {
+        marginBottom: 10,
     }
 })
