@@ -143,7 +143,7 @@ export default class CheckScreen extends React.Component {
                     onBarCodeRead={(code)=>this.setState({qr: code.data })}
                     flashMode={this.state.flashMode}
                     type={this.state.type}>
-                    <DoubleClick onClick={()=>this.setState({modalVisible: true})}/*onClick={this.takePictureHandler}*/ style={globalStyles.fullFlex} >
+                    <DoubleClick onClick={this.takePictureHandler} style={globalStyles.fullFlex} >
                         <View  style={globalStyles.fullFlex} >
                             <TopArea 
                                 toggleFlashMode={this.toggleFlashMode}
