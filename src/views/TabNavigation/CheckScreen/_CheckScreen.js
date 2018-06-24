@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons'
 import DoubleClick from 'react-native-double-click'
 import globalStyles from 'src/global/styles'
 import AnswerModal from './AnswerModal';
+import axios from 'axios'
 import {key} from '../../../../key'
 
 
@@ -62,7 +63,6 @@ export default class CheckScreen extends React.Component {
     takePictureHandler = async () => {
         if (this.camera) {
 
-            var text = null
             console.log('1')
 
             try {
@@ -70,19 +70,38 @@ export default class CheckScreen extends React.Component {
                 this.setState({loading: true})
                 const photo = await this.camera.takePictureAsync({base64: true})
                 await this.setState({base64: `${photo.base64}`})
+                await console.log('3')
                 
             }
             catch (e) {
-                console.log('Something went wrong')
+                console.log('Something went wrong: ', e)
             }
-            finally {
-                console.log('3')
-            
-            }
-
+            console.log('in between')
             try {
-                const encodedImage = `${this.state.base64}`
                 console.log('4')
+                const encodedImage = await this.state.base64
+
+                // await axios.post(  `https://vision.googleapis.com/v1/images:annotate?key=${key}`, {
+                //     "requests":[
+                //       {
+                //         "image":{
+                //           "source":{
+                //             "imageUri":
+                //               "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+                //           }
+                //         },
+                //         "features":[
+                //           {
+                //             "type":"LOGO_DETECTION",
+                //             "maxResults":1
+                //           }
+                //         ]
+                //       }
+                //     ]
+                //   },
+                // )
+                //     .then( response => this.setState({text: response}))
+                //     .catch(e => console.log('Something went wrong with Google Cloud Vision'));
                 await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${key}`, {
                     method: 'POST',
                     headers: {
@@ -90,20 +109,25 @@ export default class CheckScreen extends React.Component {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        "requests": [ {
-                            "image": {
-                                "content": encodedImage
+                        "requests":[
+                          {
+                            "image":{
+                              "content": encodedImage
                             },
-                            "features": [ {
-                                "type": "TEXT_DETECTION"
-                            } ]
-                        } ]
-                    })
-                })  .then(data => 
-                        { text = data
-                    })
-                    .catch(e => console.log('Something went wrong with Google Cloud Vision'))
+                            "features":[
+                              {
+                                "type":"TEXT_DETECTION",
+                              }
+                            ]
+                          }
+                        ]
+                      })
+                })  .then(data => this.setState({text: data}))
+                    .catch(e => console.log('Something went wrong with Google Cloud Vision', e))
+
                     console.log('5')
+                    const hey = await this.state.text
+                    await console.log(hey)
             }
             catch (e) {
                 console.log('error')
@@ -113,7 +137,8 @@ export default class CheckScreen extends React.Component {
                 // text = this.cleanData(text)
                 //this.setState({text: text})
                 console.log('6')
-                await console.log(text)
+
+
 
                 this.setState({loading: false})
                 this.setState({modalVisible: true})
@@ -124,7 +149,6 @@ export default class CheckScreen extends React.Component {
     jsonEscape = (string) => string.replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, "");
 
     cleanData = (data) =>  {
-        data = `${data}`
         data = this.jsonEscape(data)
         data = JSON.parse(data)//.responses[0].textAnnotations[0].description;
         return data
