@@ -6,6 +6,8 @@ import {FakeNav} from 'src/global/UI'
 class AnswerModal
  extends React.Component {
     render() {
+        const QRText = this.props.qr
+
         return(
             <Modal
                 animationType="slide"
@@ -17,7 +19,7 @@ class AnswerModal
                         <FakeNav title="Checking test..." /> 
                     </SafeAreaView>
                     <ScrollView style={styles.scroll} >
-                        <Text>{this.props.qr}</Text>
+                        <Text>{QRText}</Text>
                         <Text>Name: </Text>
                         <Text> </Text>
                         <Text>1 A</Text>

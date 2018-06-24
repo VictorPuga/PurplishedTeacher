@@ -62,58 +62,73 @@ export default class CheckScreen extends React.Component {
     takePictureHandler = async () => {
         if (this.camera) {
 
+            var text = null
+            console.log('1')
+
             try {
+                console.log('2')
                 this.setState({loading: true})
-                var photo = await this.camera.takePictureAsync({base64: true})
+                const photo = await this.camera.takePictureAsync({base64: true})
+                await this.setState({base64: `${photo.base64}`})
+                
             }
             catch (e) {
-                console.warn('Something went wrong')
+                console.log('Something went wrong')
             }
             finally {
-                this.setState({base64: photo.base64})
-                this.setState({loading: false})
-                this.setState({modalVisible: true})
-                console.warn('finished!')
+                console.log('3')
             
             }
 
             try {
-                const stringifiedImage = this.state.base64
-                console.warn(stringifiedImage)
-                fetch(`https://vision.googleapis.com/v1/images:annotate?key=${key}`, {
+                const encodedImage = `${this.state.base64}`
+                console.log('4')
+                await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${key}`, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                            "requests": [
-                                {
+                        "requests": [ {
                             "image": {
-                                "content": stringifiedImage
+                                "content": encodedImage
                             },
-                            "features": [
-                            {
+                            "features": [ {
                                 "type": "TEXT_DETECTION"
-                            }
-                            ]
-                        }
-                        ]
+                            } ]
+                        } ]
                     })
-                }).then(data => this.cleanData(data))
+                })  .then(data => 
+                        { text = data
+                    })
+                    .catch(e => console.log('Something went wrong with Google Cloud Vision'))
+                    console.log('5')
             }
             catch (e) {
-                console.warn('Something went wrong with Google Cloud Vision')
+                console.log('error')
             }
             finally {
+                // let text = this.state.text
+                // text = this.cleanData(text)
+                //this.setState({text: text})
+                console.log('6')
+                await console.log(text)
 
-                console.warn(this.state.text)
-
+                this.setState({loading: false})
+                this.setState({modalVisible: true})
             }
         }
     }
     
-    cleanData = (data) =>  JSON.parse(data).responses[0].textAnnotations[0].description;
+    jsonEscape = (string) => string.replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, "");
+
+    cleanData = (data) =>  {
+        data = `${data}`
+        data = this.jsonEscape(data)
+        data = JSON.parse(data)//.responses[0].textAnnotations[0].description;
+        return data
+    }
 
 
     render() {
@@ -127,7 +142,7 @@ export default class CheckScreen extends React.Component {
         if (hasCameraPermission === null) {
             return <View />;
         } else if (hasCameraPermission === false) {
-            return <Text>No access to camera</Text>;
+            return <NoAccessView />;
         } else {
             return (
                 <Camera 
@@ -193,6 +208,20 @@ class TopArea extends React.Component {
     }
 }
 
+class NoAccessView extends React.Component {
+    render() {
+        return(
+            <View style={globalStyles.container} >
+                <Text style={globalStyles.subtitle} >
+                    It looks we have no access to the camera
+                </Text>
+                <Text style={globalStyles.subtitle} >
+                    If you want to use this tool, go to your device's settings
+                </Text>
+            </View>
+        )
+    }
+}
 
 
 
