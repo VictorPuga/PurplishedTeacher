@@ -6,8 +6,18 @@ const answerKey =[
     'A','B','D','C','B','B','C','D','D','C','A','D','C','B','B','B','C','D','C','B','C','B','D','B','C','C','D','A','D','C','D','B','D','A','B','C','A','C','C','D','C','A','B','B','D','A','C','C','C','C','C','A','A','D','C','D','C','C','C','C', 
 ]
 
-findStart = (string) => string.search("01")
-findEnd = (string) => string.search("This")
+findStart = (string, param) => string.search(param)
+findEnd = (string, param) => string.search(param)
+
+cutString = (string, firstParam, secondParam) => {
+   const start = findStart(string, firstParam)
+   const end = findEnd(string, secondParam)
+   string = string.slice(start, end)
+    return string
+}
+
+checkForX1 = (x) => (x.length >= 2) ? x : "0" + x
+checkForX2 = (x) => (x <= 41) ? x +20 : (x !== 60) ? x - 39 : null
 
 clean = (string) => string.replace(/\s/g, "")
 proofread = (string) => {
@@ -18,17 +28,18 @@ proofread = (string) => {
     return string
 }
 
-calcStart = (string, x) => (6*(x-1))
-calcEnd = (string, x) => (6*x)
+// calcStart = (string, x) => (6*(x-1))
+// calcEnd = (string, x) => (6*x)
 
-validate = (string) => (string.length === 360) ? true : false 
+validate = (string) => (string.length === 360) ? true : false // I guess we dont need this anymore
 
 error = () => {throw Error('Something went wrong. Try to take the picture again')}
 
 cleanAnswers = (string) => {
-    const start = findStart(string)
-    const end = findEnd(string)
-    string = string.slice(start, end)
+    // const start = findStart(string, "01")
+    // const end = findEnd(string, "This")
+    // string = string.slice(start, end)
+    string = cutString(string, "01", "This")
     string = clean(string)
     string = proofread(string)
     return string
@@ -37,9 +48,12 @@ cleanAnswers = (string) => {
 groupAnswers = (string , questions) => {
     let answers = []
     for (let x = 1; x <= questions; x++) {
-        const start = calcStart(response, x)
-        const end = calcEnd(response, x)
-        let answer = string.slice(start, end)
+        // const start = calcStart(response, x)
+        // const end = calcEnd(response, x)
+        // let answer = string.slice(start, end)
+        const start = checkForX1(x)
+        const end = checkForX2(x)
+        let answer = cutString(string, start, end)
         answer = answer.split("")
         answer.splice(2, 0, " ")
         answer = answer.join("")
