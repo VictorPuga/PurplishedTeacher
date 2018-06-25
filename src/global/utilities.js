@@ -73,6 +73,6 @@ let response = response1
 
 response = cleanAnswers(response)
 
-response = validate(response) ? groupAnswers(response, 60) : error()
+response = groupAnswers(response, 60)
 
 console.log(response)
