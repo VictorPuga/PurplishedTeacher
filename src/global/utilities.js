@@ -55,7 +55,7 @@ groupAnswers = (string , questions) => {
         const end = checkForX2(x)
         let answer = cutString(string, start, end)
         answer = answer.split("")
-        answer.splice(2, 0, " ")
+        answer.splice(2, 0, "_")
         answer = answer.join("")
         answers.push(answer)
         answers.sort()
