@@ -44,8 +44,9 @@ groupAnswers = (string , questions) => {
         answer.splice(2, 0, " ")
         answer = answer.join("")
         answers.push(answer)
+        answers.sort()
     }
-    answers.sort()
+    // answers.sort()
     // answers.push('33')
     // answers.push('37')
     // answers.push('33 ABCD')
