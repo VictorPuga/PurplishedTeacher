@@ -1,70 +1,57 @@
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
-import { colors } from 'src/global/styles'
-
 
 class ClassIcon extends React.Component {
     render() {
-        const { is, size, color, ...rest } = this.props
+        const { is, size, ...rest } = this.props
 
         let icon
-        let THEColor
 
         switch (is) {
             case 0:
-                return icon = 'md-create'
+                icon = 'md-create'
+                break;
             case 1:
-                return icon = 'md-calculator'
+                icon = 'md-calculator'
+                break;
             case 2:
-                return icon = 'ios-flask'
+                icon = 'ios-flask'
+                break;
             case 3:
-                return icon = 'md-color-palette'
+                icon = 'ios-color-palette'
+                break;
             case 4:
-                return icon = 'md-globe'
+                icon = 'md-globe'
+                break;
             case 5:
-                return icon = 'ios-leaf'
+                icon = 'ios-leaf'
+                break;
             case 6:
-                return icon = 'ios-thermometer'
+                icon = 'ios-thermometer'
+                break;
             case 7:
-                return icon = 'ios-bulb'
+                icon = 'ios-bulb'
+                break;
             case 8:
-                return icon = 'md-create'
+                icon = 'ios-quote'
+                break;
             case 9:
-                return icon = 'md-create'
+                icon = 'md-create'
+                break;
             default:
-                return icon = 'md-create'
-        }
-
-        switch (color) {
-            case 0:
-                return THEColor = colors.red
-            case 1:
-                return THEColor = colors.orange
-            case 2:
-                return THEColor = colors.yellow
-            case 3:
-                return THEColor = colors.green
-            case 4:
-                return THEColor = colors.tealBlue
-            case 5:
-                return THEColor = colors.blue
-            case 6:
-                return THEColor = colors.purple
-            case 7:
-                return THEColor = colors.pink
-            default :
-                return THEColor = colors.red
-        }
-
+                icon = 'md-create'
+                break;
+            }
+            
         return(
-            <Ionicons {...rest} name={icon} size={size} color={THEColor}  />
+            <Ionicons {...rest} name={icon} size={size} color={'white'}  />
         )
     }
 }
 
 export default ClassIcon
 
-// Types will be monitored by PropTypes in the future
+// Types will be monitored by PropTypes in the future...
 //
 // 0 => md-create (pencil)
 // 1 => md-calculator 
@@ -73,6 +60,6 @@ export default ClassIcon
 // 4 => md-globe
 // 5 => ios-leaf
 // 6 => ios-thermometer
-// 7 => ()
-// 8 => ()
+// 7 => ios-bulb
+// 8 => ios-quote
 // 9 => ()

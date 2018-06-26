@@ -36,7 +36,7 @@ const cellStyles = StyleSheet.create({
     textContainer: {
         flex: 1,
         flexDirection: 'column',
-        padding: 10
+        padding: 10,
     }, 
     titleText: {
         width: '100%',
