@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {TitleCell} from 'src/global/UI'
 
-import globalStyles from 'src/global/styles'
+import { globalStyles } from 'src/global/styles'
 
 class StudentList extends React.Component {
     state = {

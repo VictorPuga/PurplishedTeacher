@@ -3,7 +3,7 @@ import { View, Text, Button, FlatList , StyleSheet, SafeAreaView  } from 'react-
 
 import {TitleCell} from 'src/global/UI'
 
-import globalStyles from 'src/global/styles'
+import { globalStyles } from 'src/global/styles'
 
 class List extends React.Component {
     state = {

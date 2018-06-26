@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TextInput, Button, KeyboardAvoidingView } from 'react-native';
 import { Pages } from 'react-native-pages';
-import styles from '../global/styles';
+import { styles } from '../global/styles';
 
 export default class Onboarding extends React.Component {
     render() {

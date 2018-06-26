@@ -1,20 +1,24 @@
 import React from 'react'
 import {View, Text, TouchableHighlight, StyleSheet, Image, SafeAreaView} from 'react-native';
+import {ClassIcon} from 'src/global/UI';
 import { Ionicons } from '@expo/vector-icons'
 
 class CardCell extends React.Component {
     render() {
+        const { title, detail, color, pressed } = this.props
         return(
             <TouchableHighlight 
-                underlayColor={'rgba(114,46,209,0.1)'}
-                onPress={this.props.pressed}>
+                underlayColor={'rgba(114,46,209,0.1)'} // This needs to be changed? 
+                onPress={pressed}>
                 <SafeAreaView style={styles.card}>
-                    <Image 
-                        style={styles.image} 
-                            source={{uri: 'https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552&format=original'}} />
+                    <ClassIcon 
+                        is={0}
+                        size={30}
+                        color={2}
+                         />
                     <View style={styles.textContainer}>
-                        <Text style={styles.titleText} numberOfLines={1} >{this.props.title}</Text>
-                        <Text style={styles.detailText} numberOfLines={1} >{this.props.detail}</Text>
+                        <Text style={styles.titleText} numberOfLines={1} >{title}</Text>
+                        <Text style={styles.detailText} numberOfLines={1} >{detail}</Text>
                     </View>
                     <View style={styles.detailButton}><Ionicons name="ios-arrow-forward" size={20} color="#D1D1D1" /></View>
                 </SafeAreaView>

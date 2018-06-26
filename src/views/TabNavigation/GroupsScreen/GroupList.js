@@ -2,14 +2,14 @@ import React from 'react';
 import {View, Text , FlatList, StyleSheet, SafeAreaView } from 'react-native';
 import {CardCell} from 'src/global/UI'
 
-import globalStyles from 'src/global/styles'
+import { globalStyles } from 'src/global/styles'
 
 class GroupList extends React.Component {
     state = {
         groups: [
-            { id: '0', name: 'Math 1', students: 29},
-            { id: '1', name: 'German 3', students: 30},
-            { id: '2', name: 'English 3', students: 27},
+            { id: '0', name: 'Math 1', students: 29, color: 0},
+            { id: '1', name: 'German 3', students: 30, color: 5},
+            { id: '2', name: 'English 3', students: 27, color: 2},
         ],
         refreshing: false,
         loading: false,
@@ -64,7 +64,8 @@ class GroupList extends React.Component {
                         ({item, index}) => 
                             <CardCell 
                                 title={item.name} 
-                                detail={item.students +" students"}   
+                                detail={item.students +" students"}
+                                color={item.color}   
                                 pressed={() => this.goToGroup(item.name)}/>
                     }  />
             </View>

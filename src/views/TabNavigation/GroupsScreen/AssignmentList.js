@@ -3,7 +3,7 @@ import { View, Text , FlatList, StyleSheet, SafeAreaView  } from 'react-native';
 
 import {InfoButtonCell} from 'src/global/UI'
 
-import globalStyles from 'src/global/styles'
+import { globalStyles } from 'src/global/styles'
 
 class GradeList extends React.Component {
     state = {

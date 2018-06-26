@@ -4,7 +4,7 @@ import {DetailCell, SectionHeader} from 'src/global/UI'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-import globalStyles from 'src/global/styles'
+import { globalStyles } from 'src/global/styles'
 
 const stringToKebab = (string) => string.split(" ").join("-").toLowerCase();
 

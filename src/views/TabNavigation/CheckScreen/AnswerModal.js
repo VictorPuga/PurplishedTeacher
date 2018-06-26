@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, SafeAreaView, Alert, Modal, Button, ScrollView } from 'react-native';
 import {FakeNav, RoundButton} from 'src/global/UI'
-import globalStyles from 'src/global/styles'
+import { globalStyles } from 'src/global/styles'
 
 
 

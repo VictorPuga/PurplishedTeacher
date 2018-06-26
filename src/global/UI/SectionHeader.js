@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet, SafeAreaView,} from 'react-native';
 
-import globalStyles from 'src/global/styles'
+import { globalStyles } from 'src/global/styles'
 
 class SectionHeader extends React.Component {
     render() {

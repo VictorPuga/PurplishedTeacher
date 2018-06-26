@@ -1,7 +1,17 @@
 import { StyleSheet } from 'react-native';
 
-// Colors
-const myPurple =  '#722ED1'
+// Colors from Apple's iOS Human Interface Guidelines
+const colors = {
+    red: '#FF3B30',         // 0
+    orange: '#FF9500',      // 1
+    yellow: '#FFCC00',      // 2
+    green: '#4CD964',       // 3
+    tealBlue: '#5AC8FA',    // 4
+    blue: '#007AFF',        // 5
+    purple: '#5856D6',      // 6
+    pink: '#FF2D55',        // 7
+    purplished: '#722ED1', 
+}
 
 // Global styles
 const globalStyles = StyleSheet.create({
@@ -20,11 +30,11 @@ const globalStyles = StyleSheet.create({
     },
     title: {
         fontSize: 50,
-        color: myPurple
+        color: colors.purplished
     },
     subtitle: {
         fontSize: 30,
-        color: myPurple,
+        color: colors.purplished,
         fontWeight: '800',
     },
     text: {
@@ -41,7 +51,5 @@ const globalStyles = StyleSheet.create({
     }
   });
 
-  export default globalStyles
-
-  
-  
+  export { globalStyles }
+  export { colors }

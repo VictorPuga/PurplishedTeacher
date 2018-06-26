@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, ActivityIndicat
 import { Camera, Permissions } from 'expo';
 import { Ionicons } from '@expo/vector-icons'
 import DoubleClick from 'react-native-double-click'
-import globalStyles from 'src/global/styles'
+import { globalStyles } from 'src/global/styles'
 import AnswerModal from './AnswerModal';
 import {checkQuiz, sendRequestToGoogle} from 'src/global/Utilities'
 
