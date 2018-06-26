@@ -1,12 +1,11 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
-import { Camera, Permissions, Constants, FileSystem } from 'expo';
+import { Camera, Permissions } from 'expo';
 import { Ionicons } from '@expo/vector-icons'
 import DoubleClick from 'react-native-double-click'
 import globalStyles from 'src/global/styles'
 import AnswerModal from './AnswerModal';
-import axios from 'axios'
-import {key} from '../../../../key'
+import {checkQuiz, sendRequestToGoogle} from 'src/global/Utilities'
 
 
 export default class CheckScreen extends React.Component {
@@ -17,9 +16,7 @@ export default class CheckScreen extends React.Component {
         showInstructions: true,
         modalVisible: false,
         loading: false,
-        qr: null,
-        base64: null,
-        text: null
+        answers: null
     };
 
     async componentWillMount() {
@@ -35,7 +32,7 @@ export default class CheckScreen extends React.Component {
 
     componentWillUnmount() {
         this._flashListener.remove();
-      }
+    }
 
     toggleCameraMode = () => {
         this.setState({flashMode: Camera.Constants.FlashMode.off,})
@@ -62,60 +59,38 @@ export default class CheckScreen extends React.Component {
 
     takePictureHandler = async () => {
         if (this.camera) {
-
-            console.log('1')
+            let photo
+            let encodedImage
+            let response
+            let answers
 
             try {
-                console.log('2')
                 this.setState({loading: true})
-                const photo = await this.camera.takePictureAsync({base64: true})
-                await this.setState({base64: `${photo.base64}`})
-                await console.log('3')
-                
+                photo = await this.camera.takePictureAsync({base64: true})
             }
             catch (e) {
                 console.log('Something went wrong: ', e)
             }
-
-            console.log('3.5')
+            finally {
+                encodedImage = photo.base64
+            }
 
             try {
-                console.log('4')
-                const encodedImage = await this.state.base64
-
-                await axios.post(`https://vision.googleapis.com/v1/images:annotate?key=${key}`, {
-                    "requests":[
-                      {
-                        "image":{
-                            "content": encodedImage
-                        },
-                        "features":[
-                          {
-                            "type":"TEXT_DETECTION",
-                            "maxResults":1
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                )
-                    .then( response => this.setState({text: response.data}))
-                    .catch(e => console.log('Something went wrong with Google Cloud Vision', e));
-               
-                    console.log('5')
+                response = await sendRequestToGoogle(encodedImage)
             }
             catch (e) {
                 console.log('error', e)
             }
+
+            try {
+                answers = await checkQuiz(response)
+            }
+            catch (e) {
+                console.log('Something went wrong: ', e)
+            }
             finally {
-                let data = this.state.text
-                data = data.responses[0].textAnnotations[0].description;
-                this.setState({text: data})
-                // console.log(this.state.text)
-                console.log('6')
-
-
-
+                this.setState({answers: answers})
+                console.log(this.state.answers)
                 this.setState({loading: false})
                 this.setState({modalVisible: true})
             }
@@ -159,7 +134,7 @@ export default class CheckScreen extends React.Component {
                         isVisible={this.state.modalVisible} 
                         close={this.closeModal} 
                         qr={this.state.qr}
-                        text={this.state.text}
+                        answers={this.state.answers}
                          /> 
                 </Camera>
       );

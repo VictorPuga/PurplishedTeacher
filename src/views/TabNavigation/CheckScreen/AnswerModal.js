@@ -8,7 +8,14 @@ import globalStyles from 'src/global/styles'
 class AnswerModal
  extends React.Component {
     render() {
-        const {qr, text} = this.props
+        const {qr, answers} = this.props
+
+        const answerLabels = answers ? answers.map( (answer, index) => <Text 
+                                                                style={{backgroundColor: 'red', color: 'black'}} 
+                                                                key={index} >
+                                                                    {answer}
+                                                                </Text>) 
+                                        : null
 
         return(
             <Modal
@@ -22,23 +29,11 @@ class AnswerModal
                     </SafeAreaView>
                     <ScrollView style={styles.scroll} >
                         <Text>{qr}</Text>
-                        <Text>{text}</Text>
                         <Text>Name: </Text>
                         <Text> </Text>
-                        <Text>1 A</Text>
-                        <Text>2 A</Text>
-                        <Text>3 A</Text>
-                        <Text>4 A</Text>
-                        <Text>5 A</Text>
-                        <Text>6 A</Text>
-                        <Text>7 A</Text>
-                        <Text>8 A</Text>
-                        <Text>9 A</Text>
-                        <Text>10 A</Text>
-                        <Text>11 A</Text>
-                        <Text>12 A</Text>
+                        {answerLabels}
                         <Text> </Text>
-                        <Text>98.2</Text>
+                        <Text>Grade: </Text>
                         <RoundButton title="Finish!" style={styles.button} onPress={this.props.close}  />
                     </ScrollView>
             </Modal>
