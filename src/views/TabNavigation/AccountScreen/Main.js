@@ -75,6 +75,9 @@ class Main extends React.Component {
                         <SectionHeader text={title}/>
                     )}
                     />
+                    <Button 
+                        title="Auth beta" 
+                        onPress={() => this.props.navigation.navigate('AuthBeta')}/>
             </View>
         )
     }

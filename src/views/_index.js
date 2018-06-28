@@ -1,2 +1,2 @@
-export {default as OnboardingScreen} from './OnboardingScreen'
+export {default as AuthScreen} from './AuthScreen'
 export {default as TabNavigation} from './TabNavigation/TabNavigation'

@@ -14,7 +14,7 @@ class GroupList extends React.Component {
             { id: '4', name: 'Geography 1', students: 29, color: 4, icon: 4 },
             { id: '5', name: 'Science 1',   students: 29, color: 5, icon: 5 },
             { id: '6', name: 'Chemistry 2', students: 29, color: 6, icon: 6 },
-            { id: '7', name: 'Technoly 1',  students: 29, color: 7, icon: 7 },
+            { id: '7', name: 'Technology 1',  students: 29, color: 7, icon: 7 },
             { id: '8', name: 'German 3',    students: 29, color: 0, icon: 8 },
             { id: '9', name: 'LOL',         students: 29, color: 1, icon: 9 },
         ],

@@ -9,22 +9,7 @@ class List extends React.Component {
     state = {
         chats: [
             { id: '0', with: 'person', lastText: 'hey',image: 'not found'},
-            { id: '1', with: 'yourself', lastText: 'hello',image: 'not found'},
-            { id: '2', with: 'nobody', lastText: '* silence *',image: 'not found'},
-            { id: '3', with: 'alien', lastText: 'VEvafruE3',image: 'not found'},
-            { id: '4', with: 'test', lastText: 'dsfxghcbd ukckusyc bysdck skcsdyc scubscbskngynskucgukct',image: 'not found'},
-            { id: '5', with: 'alien', lastText: 'VEvafruE3',image: 'not found'},
-            { id: '6', with: 'error', lastText: 'error',image: 'error'},
-            { id: '7', with: 'error', lastText: 'error',image: 'error'},
-            { id: '8', with: 'error', lastText: 'error',image: 'error'},
-            { id: '9', with: 'error', lastText: 'error',image: 'error'},
-            { id: '10', with: 'error', lastText: 'error',image: 'error'},
-            { id: '11', with: 'error', lastText: 'error',image: 'error'},
-            { id: '12', with: 'error', lastText: 'error',image: 'error'},
-            { id: '13', with: 'error', lastText: 'error',image: 'error'},
-            { id: '14', with: 'error', lastText: 'error',image: 'error'},
-            { id: '15', with: 'error', lastText: 'error',image: 'error'},
-            { id: '16', with: 'error', lastText: 'error',image: 'error'},
+            
         ],
         refreshing: false,
         loading: false,
@@ -89,7 +74,7 @@ class List extends React.Component {
                             <TitleCell 
                                 title={item.with} 
                                 detail={item.lastText} 
-                                pressed= {() => this.goToChat(item.with)}/>
+                                pressed={() => this.goToChat(item.with)} />
                     }  />
             </View>
         )

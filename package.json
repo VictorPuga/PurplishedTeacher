@@ -19,13 +19,16 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@pusher/chatkit": "^0.7.16",
+    "aws-amplify": "^0.4.7",
+    "aws-amplify-react-native": "^0.2.18",
     "axios": "^0.18.0",
     "expo": "^28.0.0",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-native-double-click": "^1.0.5",
-    "react-native-pages": "^0.7.0",
+    "react-native-gifted-chat": "^0.4.3",
     "react-native-view-with-title": "^1.0.1",
     "react-navigation": "^2.2.5"
   }
