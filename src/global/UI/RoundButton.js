@@ -1,15 +1,14 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { globalStyles } from 'src/global/styles'
 
 class RoundButton extends React.Component {
     render() {
         return(
             <TouchableOpacity  
-                style={[globalStyles.roundButton, this.props.style]} 
+                style={[styles.roundButton, this.props.style]} 
                 activeOpacity={0.7} 
                 onPress={this.props.onPress}>
-                <Text style={globalStyles.text} >
+                <Text style={styles.text} >
                     {this.props.title}
                 </Text>
             </TouchableOpacity>

@@ -7,3 +7,5 @@ export {default as SectionHeader} from './SectionHeader'
 export {default as FakeNav} from './FakeNav'
 export {default as RoundButton} from './RoundButton'
 export {default as ClassIcon} from './ClassIcon'
+
+export {default as PurplishedAuthTheme} from './PurplishedAuthTheme'

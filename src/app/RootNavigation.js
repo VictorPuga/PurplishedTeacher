@@ -1,37 +1,39 @@
 import React from 'react'
-import { createStackNavigator } from 'react-navigation';
-import * as Views from 'src/views/_index';
+import { createSwitchNavigator } from 'react-navigation';
+import * as Views from 'src/views';
 
-// This is for the first testing of auth + redux
-import AuthBetaScreen from 'src/views/AuthBetaScreen'
-
-const { AuthScreen, TabNavigation } = Views
+const { AuthNavigation, TabNavigation } = Views
 
 // Root navigation for the application
 
-// This is for the first testing of auth + redux
-const AuthBeta = createStackNavigator({
-    Form: {screen: AuthBetaScreen}
-})
+// const RootNavigation = createSwitchNavigator({
+//     Auth: { screen: AuthNavigation },
+//     Tabs: { screen: TabNavigation },
+// },
+// {
+//     // Instead of loading the onboarding, load the Tabs screen first.
+//     // Then, check if the user is authenticated, and after that
+//     // load the auth screen if they aren't. 
+//     initialRouteName: 'Auth',
+//     headerMode: 'none',
+//     navigationOptions: {
+//         gesturesEnabled: false,
+//     },
+// })
 
-const RootNavigation = createStackNavigator({
-    Auth: { screen: AuthScreen },
-    Tabs: { screen: TabNavigation },
-    // This is for the first testing of auth + redux
-    AuthBeta: { screen: AuthBeta },
-},
-{
-    // Instead of loading the onboarding, load the Tabs screen first.
-    // Then, check if the user is authenticated, and after that
-    // load the auth screen if they aren't. 
-    initialRouteName: 'Tabs',
-    headerMode: 'none',
-    navigationOptions: {
-        gesturesEnabled: false,
-      },
-})
-
-export default RootNavigation
+const createRootNavigation = (signedIn = false) => {
+    return createSwitchNavigator({
+        Auth: { screen: AuthNavigation },
+        Tabs: { screen: TabNavigation },
+    },
+    {
+        // Instead of loading the onboarding, load the Tabs screen first.
+        // Then, check if the user is authenticated, and after that
+        // load the auth screen if they aren't. 
+        initialRouteName: signedIn ? "Tabs" : "Auth",
+        headerMode: 'none',
+    })
+}
 
 
-
+export default createRootNavigation

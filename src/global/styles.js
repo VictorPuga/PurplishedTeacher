@@ -41,7 +41,7 @@ const globalStyles = StyleSheet.create({
         fontSize: 40,
     },
     input: {
-        height: 40, 
+        height: 30, 
         width: 200, 
         padding: 5,
         margin: 5,

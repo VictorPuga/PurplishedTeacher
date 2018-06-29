@@ -1,4 +1,4 @@
-import { key } from '../../../key'
+import { key } from 'src/keys'
 import axios from 'axios'
 
 sendRequestToGoogle = async (encodedImage) => {
