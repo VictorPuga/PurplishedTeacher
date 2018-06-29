@@ -11,6 +11,7 @@ const colors = {
     purple: '#5856D6',      // 6
     pink: '#FF2D55',        // 7
     purplished: '#722ED1', 
+    selectedMenuItemColor: '#345EF2',
 }
 
 // Global styles

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StatusBar, StyleSheet } from 'react-native';
-import createRootNavigator from 'src/app/RootNavigation'
+import createRootNavigator from './RootNavigation'
 
 import { Auth } from "aws-amplify";
 import Amplify from 'aws-amplify-react-native'
