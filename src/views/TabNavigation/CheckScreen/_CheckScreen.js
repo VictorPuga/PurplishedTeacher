@@ -16,7 +16,8 @@ export default class CheckScreen extends React.Component {
         showInstructions: true,
         modalVisible: false,
         loading: false,
-        answers: null
+        answers: null,
+        qr: null,
     };
 
     async componentWillMount() {
@@ -144,15 +145,7 @@ export default class CheckScreen extends React.Component {
 
 class TopArea extends React.Component {
     state = {
-        showControls: false,
         flashMode: this.props.flashMode
-    }
-
-    toggleControls = () => {
-        showingControls = this.state.showControls
-        this.setState({
-            showControls: !showingControls
-        });
     }
 
     render() {
