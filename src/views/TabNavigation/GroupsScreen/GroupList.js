@@ -56,11 +56,9 @@ class GroupList extends React.Component {
     render() {
         return(
             <View style={globalStyles.container}>
-            
             {/*For a tutorial on flatlists, see:
             https://medium.com/react-native-development/how-to-use-the-flatlist
             -component-react-native-basics-92c482816fe6*/}
-
                 <FlatList
                     contentContainerStyle={{alignItems: 'center', paddingBottom: 20}}
                     style={styles.list}
@@ -72,7 +70,7 @@ class GroupList extends React.Component {
                     data={this.state.groups}
                     renderItem={
                         ({item, index}) => 
-                            <CardCell 
+                            <CardCell
                                 title={item.name} 
                                 detail={item.students +" students"}
                                 color={item.color}   
